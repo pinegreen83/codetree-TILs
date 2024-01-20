@@ -63,7 +63,7 @@ int main() {
             for(int k=0; k<n; k++)
             {
                 vector<int> bfsans = bfs(i, j, k);
-                if(bfsans[0] > 0)
+                if(bfsans[0] >= 0)
                 {
                     answer = max(answer, bfsans[1]);
                 }
