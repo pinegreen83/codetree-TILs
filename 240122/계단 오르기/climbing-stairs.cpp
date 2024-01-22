@@ -15,7 +15,7 @@ int main() {
 
     for(int i=4; i<=n; i++)
     {
-        stair[i] = stair[i-2] + stair[i-3];
+        stair[i] = (stair[i-2] + stair[i-3]) % 10007;
     }
     cout << stair[n];
 
