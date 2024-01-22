@@ -13,7 +13,7 @@ int main() {
     stair[2] = 1;
     stair[3] = 1;
 
-    for(int i=5; i<=n; i++)
+    for(int i=4; i<=n; i++)
     {
         stair[i] = stair[i-2] + stair[i-3];
     }
