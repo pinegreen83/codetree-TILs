@@ -15,7 +15,7 @@ int main() {
 
     for(int i=3; i<=n; i++)
     {
-        square[i] = ((square[i-1] * 3) % modval + (square[i-2] - square[i-3]) % modval) % modval;
+        square[i] = ((square[i-1] * 3) % modval + ((square[i-2]+modval) - square[i-3]) % modval) % modval;
     }
     cout << square[n];
 
