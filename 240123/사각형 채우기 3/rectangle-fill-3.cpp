@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -6,17 +7,16 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n;
     cin >> n;
+    vector<int> square(n+1);
+    square[0] = 1;
+    square[1] = 2;
+    square[2] = 7;
 
-    int answer = 1;
-    for(int i=2; i<=n; i++)
+    for(int i=3; i<=n; i++)
     {
-       answer = (answer * i) % 1000000007;
+        square[i] = ((square[i-1] * 3) % 1000000007) + ((square[i-2] - square[i-3]) % 1000000007);
     }
-
-    answer = ((answer+1) * n) % 1000000007;
-    answer += 1;
-    if(n == 1) cout << 2;
-    else cout << answer;
+    cout << square[n];
 
     return 0;
 }
