@@ -11,10 +11,11 @@ int main() {
     square[0] = 1;
     square[1] = 2;
     square[2] = 7;
+    int modval = 1000000007;
 
     for(int i=3; i<=n; i++)
     {
-        square[i] = (square[i-1] * 3 + square[i-2] - square[i-3]) % 1000000007;   
+        square[i] = ((square[i-1] * 3) % modval + (square[i-2] - square[i-3]) % modval) % modval;
     }
     cout << square[n];
 
