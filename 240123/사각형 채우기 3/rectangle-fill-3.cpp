@@ -7,14 +7,16 @@ int main() {
     int n;
     cin >> n;
 
-    int answer = 2;
+    int answer = 1;
     for(int i=2; i<=n; i++)
     {
-        answer += (answer * 2 + 1) % 1000000007;
-        if(n > 4) break;
+       answer = (answer * i) % 1000000007;
     }
 
-    cout << answer;
+    answer = ((answer+1) * n) % 1000000007;
+    answer += 1;
+    if(n == 1) cout << 2;
+    else cout << answer;
 
     return 0;
 }
