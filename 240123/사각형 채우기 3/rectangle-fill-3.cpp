@@ -10,7 +10,8 @@ int main() {
     int answer = 2;
     for(int i=2; i<=n; i++)
     {
-        answer += ((answer) * 2 + 1) % 1000000007;
+        answer += (answer * 2 + 1) % 1000000007;
+        if(n > 4) break;
     }
 
     cout << answer;
