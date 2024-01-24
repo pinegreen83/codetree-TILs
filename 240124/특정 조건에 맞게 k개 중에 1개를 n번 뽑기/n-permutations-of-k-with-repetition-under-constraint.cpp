@@ -21,12 +21,17 @@ void comb(int idx)
     {
         combs[idx] = i;
         bool isThree = false;
-        vector<int> check(9);
-
-        for(int j=0; j<=idx; j++)
+        int now = combs[0];
+        int cnt = 1;
+        for(int j=1; j<=idx; j++)
         {
-            check[combs[j]]++;
-            if(check[combs[j]] == 3) isThree = true;
+            if(now == combs[j]) cnt++;
+            else 
+            {
+                now = combs[j];
+                cnt = 1;
+            }
+            if(cnt == 3) isThree = true;
         }
 
         if(isThree)
