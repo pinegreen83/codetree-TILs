@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,38 +9,26 @@ int main() {
     int n;
     cin >> n;
 
-    int maxnum = 0;
-    int maxidx = 0;
-    vector<int> a(n+1);
+    vector<int> a(n);
+    vector<int> dp(n);
     for(int i=0; i<n; i++)
     {
         cin >> a[i];
     }
 
-    int maxsum = 0;
     for(int i=0; i<n; i++)
     {
-        int temp = a[i];
-        if(a[i] > a[i+1])
+        dp[i] = a[i];
+        for(int j=0; j<i; j++)
         {
-            int start = a[i+1];
-            for(int j=i+1; j<=n; j++)
+            if(a[j] > a[i])
             {
-                if(a[j] >= start)
-                {
-                    start = a[j];
-                }
-                else
-                {
-                    temp += start;
-                    start = a[j];
-                }
+                dp[i] = max(dp[i], dp[j] + a[i]);
             }
         }
-        maxsum = max(maxsum, temp);
     }
 
-    cout << maxsum;
+    cout << *max_element(dp.begin(), dp.end());
 
     return 0;
 }
