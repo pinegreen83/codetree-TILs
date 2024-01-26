@@ -15,6 +15,7 @@ void choose(int cnt)
         for(auto i : comb)
             cout << i << " ";
         cout << endl;
+        return;
     }
     for(int i=1; i<=n; i++)
     {
