@@ -12,11 +12,13 @@ int main() {
     vector<vector<int>> map(n+1, vector<int>(n+1));
     vector<vector<int>> dirs = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
 
+    int blocks = 0;
     for(int i=1; i<=n; i++)
     {
         for(int j=1; j<=n; j++)
         {
             cin >> map[i][j];
+            if(!map[i][j]) blocks++;
         }
     }
 
@@ -24,6 +26,7 @@ int main() {
     {
         int x, y;
         cin >> x >> y;
+        if(answer == blocks) continue;
         vector<vector<int>> visited(n+1, vector<int>(n+1));
         queue<pair<int, int>> q;
         q.push({x, y});
