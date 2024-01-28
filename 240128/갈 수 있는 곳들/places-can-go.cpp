@@ -32,6 +32,11 @@ int main() {
         {
             pair<int, int> temp = q.front();
             q.pop();
+            if(!map[temp.first][temp.second])
+            {
+                map[temp.first][temp.second] = 2;
+                answer++;
+            }
             for(int j=0; j<4; j++)
             {
                 int dirx = temp.first + dirs[j][0];
@@ -40,11 +45,6 @@ int main() {
                 {
                     if(!visited[dirx][diry] && map[dirx][diry] != 1)
                     {
-                        if(!map[dirx][diry])
-                        {
-                            map[dirx][diry] = 2;
-                            answer++;
-                        }
                         visited[dirx][diry] = 1;
                         q.push({dirx, diry});
                     }
