@@ -46,7 +46,7 @@ int main() {
         }
     }
 
-    cout << shorts[n-1][m-1];
+    cout << (shorts[n-1][m-1] != 1000 ? shorts[n-1][m-1] : -1);
 
     return 0;
 }
