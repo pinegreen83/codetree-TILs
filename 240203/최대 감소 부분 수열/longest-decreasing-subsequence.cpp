@@ -14,7 +14,7 @@ int main() {
     for(int i=0; i<n; i++) cin >> numbers[i];
 
     dp.push_back(1);
-    int ans = 0;
+    int ans = 1;
     for(int i=1; i<n; i++)
     {
         int now = 0;
