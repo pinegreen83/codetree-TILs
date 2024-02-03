@@ -12,27 +12,20 @@ int main() {
     vector<int> numbers(n);
     vector<int> dp;
 
-    for(int i=0; i<n; i++)
-    {
-        cin >> numbers[i];
-    }
-
+    for(int i=0; i<n; i++) cin >> numbers[i];
     dp.push_back(numbers[0]);
-    
-    int answer = 1;
 
     for(int i=1; i<n; i++)
     {
-        while(dp.back() >= numbers[i])
+        if(numbers[i] > dp.back()) dp.push_back(numbers[i]);
+        else
         {
-            dp.pop_back();
+            int small = lower_bound(dp.begin(), dp.end(), numbers[i]) - dp.begin();
+            dp[small] = numbers[i];
         }
-        dp.push_back(numbers[i]);
-        int size = dp.size();
-        answer = max(answer, size);
     }
 
-    cout << answer;
+    cout << dp.size();
 
     return 0;
 }
