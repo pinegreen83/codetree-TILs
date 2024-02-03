@@ -13,8 +13,7 @@ int main() {
     vector<int> dp;
     for(int i=0; i<n; i++) cin >> numbers[i];
 
-    dp.push_back(numbers[0]);
-
+    dp.push_back(1);
     int ans = 0;
     for(int i=1; i<n; i++)
     {
@@ -29,7 +28,6 @@ int main() {
         dp.push_back(now + 1);
         ans = max(ans, dp[i]);
     }
-
     cout << ans;
     
     return 0;
