@@ -23,7 +23,7 @@ int main() {
 
     for(int i=1; i<n; i++)
     {
-        while(dp.back() > numbers[i])
+        while(dp.back() >= numbers[i])
         {
             dp.pop_back();
         }
