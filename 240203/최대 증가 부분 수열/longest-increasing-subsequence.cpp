@@ -19,7 +19,7 @@ int main() {
 
     dp.push_back(numbers[0]);
     
-    int answer = 0;
+    int answer = 1;
 
     for(int i=1; i<n; i++)
     {
