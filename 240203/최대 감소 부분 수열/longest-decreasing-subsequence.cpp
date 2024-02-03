@@ -14,17 +14,23 @@ int main() {
     for(int i=0; i<n; i++) cin >> numbers[i];
 
     dp.push_back(numbers[0]);
+
+    int ans = 0;
     for(int i=1; i<n; i++)
     {
-        if(dp.back() > numbers[i]) dp.push_back(numbers[i]);
-        else
+        int now = 0;
+        for(int j=0; j<i; j++)
         {
-            int now = upper_bound(dp.begin(), dp.end(), numbers[i]) - dp.begin();
-            dp[now] = numbers[i];
+            if(numbers[j] > numbers[i])
+            {
+                now = max(now, dp[j]);
+            }
         }
+        dp.push_back(now + 1);
+        ans = max(ans, dp[i]);
     }
 
-    cout << dp.size();
+    cout << ans;
     
     return 0;
 }
