@@ -30,7 +30,7 @@ int main() {
         }
     }
 
-    cout << (dp[m] == INT_MIN ? -1 : dp[m]);
+    cout << (dp[m] == INT_MAX ? -1 : dp[m]);
 
     return 0;
 }
