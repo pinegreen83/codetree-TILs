@@ -30,12 +30,6 @@ int main() {
         }
     }
 
-    for(auto i : dp)
-    {
-        cout << i << " ";
-    }
-    cout << endl;
-
     cout << (dp[m] == INT_MIN ? -1 : dp[m]);
 
     return 0;
