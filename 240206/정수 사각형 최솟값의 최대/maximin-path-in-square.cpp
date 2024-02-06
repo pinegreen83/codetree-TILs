@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <climits>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ int main() {
     }
 
     vector<vector<int>> dp(n+1, vector<int>(n+1));
-    dp[1][1] = map[1][1];
+    dp[1][1] = INT_MAX;
     for(int i=2; i<=n; i++)
     {
         dp[i][1] = min(map[i][1], dp[i-1][1]);
