@@ -31,10 +31,7 @@ int main() {
     {
         for(int j=2; j<=n; j++)
         {
-            int minnum = min(dp[i-1][j], dp[i][j-1]);
-            int maxnum = max(dp[i-1][j], dp[i][j-1]);
-            if(map[i][j] >= maxnum) dp[i][j] = maxnum;
-            else dp[i][j] = min(map[i][j], minnum);
+            dp[i][j] = min(map[i][j], max(dp[i-1][j], dp[i][j-1]));
         }
     }
 
