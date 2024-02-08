@@ -45,7 +45,12 @@ int main() {
                 }
                 else if(map[temp.first][temp.second] == maxnow)
                 {
-                    if(tx >= temp.first && tx >= temp.second)
+                    if(tx > temp.first)
+                    {
+                        tx = temp.first;
+                        ty = temp.second;
+                    }
+                    else if(tx == temp.first && ty > temp.second)
                     {
                         tx = temp.first;
                         ty = temp.second;
@@ -66,6 +71,7 @@ int main() {
                 }
             }
         }
+        if(x == tx && y == ty) break;
         x = tx;
         y = ty;
     }
