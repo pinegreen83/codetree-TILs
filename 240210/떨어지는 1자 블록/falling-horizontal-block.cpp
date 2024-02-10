@@ -19,23 +19,23 @@ int main() {
 
     bool check = true;
     int now = 0;
-    while(check)
+    while(now < n)
     {
         for(int i=k-1; i<k+m-1; i++)
         {
             if(map[now][i])
             {
                 check = false;
-                now--;
                 break;
             }
         }
-        if(check) now++;
+        if(!check) break;
+        now++;
     }
 
     for(int i=k-1; i<k+m-1; i++)
     {
-        map[now][i] = 1;
+        map[now-1][i] = 1;
     }
 
     for(auto m : map)
