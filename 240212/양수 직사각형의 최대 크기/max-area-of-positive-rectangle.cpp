@@ -18,7 +18,7 @@ bool maxsquare(int height, int width)
                 if(!temp) break;
                 for(int w=j; w<j+width; w++)
                 {
-                    if(map[h][w] < 0)
+                    if(map[h][w] <= 0)
                     {
                         temp = false;
                         break;
