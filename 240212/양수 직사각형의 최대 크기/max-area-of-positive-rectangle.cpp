@@ -37,7 +37,7 @@ bool maxsquare(int height, int width)
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int ans = 0;
+    int ans = -1;
     cin >> n >> m;
 
     int a;
