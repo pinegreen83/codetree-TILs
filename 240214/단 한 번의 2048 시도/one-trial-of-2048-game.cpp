@@ -45,11 +45,10 @@ int main() {
                 {
                     temp.push_back(0);
                 }
-                for(auto t : temp)
+                for(int j=0; j<4; j++)
                 {
-                    cout << t << " ";
+                    map[i][j] = temp[j];
                 }
-                cout << endl;
             }
             break;
         case 'R':
@@ -79,9 +78,8 @@ int main() {
                 }
                 for(int j=0; j<4; j++)
                 {
-                    cout << temp[3-j] << " ";
+                    map[i][j] = temp[3-j];
                 }
-                cout << endl;
             }
             break;
         case 'U':
@@ -114,14 +112,6 @@ int main() {
                     map[j][i] = temp[j];
                 }
             }
-            for(auto m : map)
-            {
-                for(auto i : m)
-                {
-                    cout << i << " ";
-                }
-                cout << endl;
-            }
             break;
         case 'D':
             for(int i=0; i<4; i++)
@@ -153,15 +143,16 @@ int main() {
                     map[j][i] = temp[3-j];
                 }
             }
-            for(auto m : map)
-            {
-                for(auto i : m)
-                {
-                    cout << i << " ";
-                }
-                cout << endl;
-            }
             break;
+    }
+
+    for(auto m : map)
+    {
+        for(auto i : m)
+        {
+             cout << i << " ";
+        }
+        cout << endl;
     }
 
     return 0;
