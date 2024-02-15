@@ -35,7 +35,7 @@ int main() {
     {
         if(answer)
         {
-            if(x == startx && y == starty)
+            if(x == startx && y == starty && direction == 0)
             {
                 answer = -1;
                 break;
