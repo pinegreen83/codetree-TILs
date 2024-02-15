@@ -30,9 +30,8 @@ int main() {
     
     int startx = x;
     int starty = y;
-    int test = 10;
     // 진행
-    while(test)
+    while(true)
     {
         if(answer)
         {
@@ -87,7 +86,6 @@ int main() {
                 answer++;
             }
         }
-        test--;
     }
         
     cout << answer;
