@@ -2,12 +2,7 @@
 #include <vector>
 
 using namespace std;
-
 int n;
-vector<vector<char>> map;
-int direction = 0; // 0 : right, 1 : down, 2 : left, 3 : up
-vector<vector<int>> dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-vector<vector<int>> rdirs = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
 
 bool isIn(int x, int y)
 {
@@ -21,7 +16,10 @@ int main() {
     int x, y;
 
     cin >> x >> y;
-    map = vector<vector<char>>(n, vector<char>(n));
+    vector<vector<char>> map(n, vector<char>(n));
+    int direction = 0; // 0 : right, 1 : down, 2 : left, 3 : up
+    vector<vector<int>> dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    vector<vector<int>> rdirs = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
 
     for(int i=0; i<n; i++)
     {
@@ -35,10 +33,11 @@ int main() {
     
     int startx = x;
     int starty = y;
+    int time = 0;
     // 진행
     while(true)
     {
-        if(answer)
+        if(time)
         {
             if(x == startx && y == starty && direction == 0)
             {
@@ -87,6 +86,7 @@ int main() {
                 answer++;
             }
         }
+        time++;
     }
         
     cout << answer;
