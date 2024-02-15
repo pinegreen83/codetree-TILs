@@ -9,6 +9,11 @@ int direction = 0; // 0 : right, 1 : down, 2 : left, 3 : up
 vector<vector<int>> dirs = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 vector<vector<int>> rdirs = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}};
 
+bool isIn(int x, int y)
+{
+    return 0 <= x && x < n && 0 <= y && y < n;
+}
+
 int main() {
     // 여기에 코드를 작성해주세요.
     int answer = 0;
@@ -44,14 +49,14 @@ int main() {
         // 진행 방향 앞이 격자 밖일 경우
         int dirx = x+dirs[direction][0];
         int diry = y+dirs[direction][1];
-        if(0 > dirx || dirx >= n || 0 > diry || diry >= n) 
+        if(!isIn(dirx, diry)) 
         {
             answer++;
             break;
         }
         // 진행 방향 앞이 격자 안일 경우
         // 진행 방향 앞에 블럭이 있을 경우
-        if(map[x+dirs[direction][0]][y+dirs[direction][1]] == '#')
+        if(map[dirx][diry] == '#')
         {
             // 반시계방향으로 90도 돌리기
             direction -= 1;
@@ -63,26 +68,22 @@ int main() {
             int rdirx = dirx + rdirs[direction][0];
             int rdiry = diry + rdirs[direction][1];
             // 진행하려는 방향 오른쪽에 벽이 없을 경우
-            if(map[rdirx][rdiry] == '.')
+            if(isIn(rdirx, rdiry) && map[rdirx][rdiry] == '.')
             {
-                // 앞으로 진행
-                x += dirs[direction][0];
-                y += dirs[direction][1];
-                answer++;
                 // 시계방향으로 90도 돌리기
                 direction++;
                 if(direction == 4) direction = 0;
                 // 앞으로 진행
-                x += dirs[direction][0];
-                y += dirs[direction][1];
-                answer++;
+                x = rdirx;
+                y = rdiry;
+                answer+=2;
             }
             // 진행하려는 방향 오른쪽에 벽이 있을 경우
-            else
+            else if(isIn(rdirx, rdiry) && map[rdirx][rdiry] == '#')
             {
                 // 그냥 진행
-                x += dirs[direction][0];
-                y += dirs[direction][1];
+                x = dirx;
+                y = diry;
                 answer++;
             }
         }
