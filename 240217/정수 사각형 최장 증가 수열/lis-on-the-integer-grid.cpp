@@ -21,13 +21,10 @@ void dfs(int x, int y)
     {
         int dirx = x + dirs[i][0];
         int diry = y + dirs[i][1];
-        if(IsRange(dirx, diry))
+        if(IsRange(dirx, diry) && map[x][y] < map[dirx][diry])
         {
-            if(map[x][y] < map[dirx][diry])
-            {
-                if(!dp[dirx][diry]) dfs(dirx, diry);
-                if(dp[dirx][diry] > maxmove) maxmove = dp[dirx][diry];
-            }
+            if(!dp[dirx][diry]) dfs(dirx, diry);
+            if(dp[dirx][diry] > maxmove) maxmove = dp[dirx][diry];
         }
     }
     dp[x][y] += maxmove;
