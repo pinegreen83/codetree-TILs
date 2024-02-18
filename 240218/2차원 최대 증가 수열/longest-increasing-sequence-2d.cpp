@@ -14,7 +14,10 @@ void move(int x, int y)
     {
         for(int j=y+1; j<m; j++)
         {
-            if(map[x][y] < map[i][j]) dp[i][j] = max(dp[i][j], dp[x][y]+1);
+            if(map[x][y] < map[i][j])
+            {
+                dp[i][j] = max(dp[i][j], dp[x][y]+1);
+            }
         }
     }
 }
@@ -25,7 +28,7 @@ int main() {
     answer = 0;
 
     map = vector<vector<int>>(n, vector<int>(m));
-    dp = vector<vector<int>>(n, vector<int>(m, 1));
+    dp = vector<vector<int>>(n, vector<int>(m, -1));
     for(int i=0; i<n; i++)
     {
         for(int j=0; j<m; j++)
@@ -34,11 +37,12 @@ int main() {
         }
     }
 
+    dp[0][0] = 1;
     for(int i=0; i<n; i++)
     {
         for(int j=0; j<m; j++)
         {
-            move(i, j);
+            if(dp[i][j] != -1) move(i, j);
             answer = max(answer, dp[i][j]);
         }
     }
