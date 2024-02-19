@@ -14,17 +14,16 @@ int main() {
     }
 
     vector<int> dp(m+1, -1);
-    int dplast = 0;
+    dp[0] = 0;
     for(int i=0; i<n; i++)
     {
         int now = nums[i];
         dp[now] = i;
-        for(int j=1; j<=m; j++)
+        for(int j=m; j>=now; j--)
         {
-            if(j+now > m) break;
-            if(dp[j] != -1 && dp[j] != i)
+            if(dp[j-now] != -1)
             {
-                dp[j+now] = i;
+                dp[j] = i;
             }
         }
     }
