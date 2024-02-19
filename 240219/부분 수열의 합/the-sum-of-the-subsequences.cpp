@@ -18,7 +18,6 @@ int main() {
     for(int i=0; i<n; i++)
     {
         int now = nums[i];
-        dp[now] = i;
         for(int j=m; j>=now; j--)
         {
             if(dp[j-now] != -1)
