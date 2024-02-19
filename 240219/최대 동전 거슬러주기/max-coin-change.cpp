@@ -14,13 +14,15 @@ int main() {
         cin >> coins[i];
     }
 
-    vector<int> dp(m+1);
+    vector<int> dp(m+1, -1);
+    dp[0] = 0;
+
     for(int i=1; i<=m; i++)
     {
-        int now = 0;
+        int now = -1;
         for(int j=0; j<n; j++)
         {
-            if(i - coins[j] >= 0)
+            if(i - coins[j] >= 0 && dp[i-coins[j]] != -1)
             {
                 now = max(now, dp[i - coins[j]] + 1);
             }
@@ -28,7 +30,7 @@ int main() {
         dp[i] = now;
     }
 
-    cout << (dp[m] ? dp[m] : -1);
+    cout << dp[m];
 
     return 0;
 }
