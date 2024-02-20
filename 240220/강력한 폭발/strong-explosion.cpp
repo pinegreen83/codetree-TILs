@@ -1,15 +1,14 @@
 #include <iostream>
 #include <vector>
-#include <queue>
 #include <algorithm>
 
 using namespace std;
 
-int n, cnt;
+int n;
 int answer = 0;
 vector<int> comb;
 vector<vector<int>> map;
-queue<pair<int, int>> q;
+vector<vector<int>> bombs;
 vector<vector<vector<int>>> blow = {
     {{-2, 0}, {-1, 0}, {1, 0}, {2, 0}},
     {{-1, 0}, {1, 0}, {0, -1}, {0, 1}},
@@ -23,18 +22,16 @@ bool IsRange(int x, int y)
 
 void perm(int num)
 {
-    if(cnt == num)
+    if(bombs.size() == num)
     {
-        int bomb = cnt;
+        int bomb = num;
         vector<vector<int>> temp = map;
-        for(auto i : comb)
+        for(int i=0; i<num; i++)
         {
-            pair<int, int> now = q.front();
-            q.pop();
             for(int j=0; j<4; j++)
             {
-                int dirx = now.first + blow[i][j][0];
-                int diry = now.second + blow[i][j][1];
+                int dirx = bombs[i][0] + blow[comb[i]][j][0];
+                int diry = bombs[i][1] + blow[comb[i]][j][1];
                 if(IsRange(dirx, diry)) 
                 {
                     if(!temp[dirx][diry])
@@ -44,7 +41,6 @@ void perm(int num)
                     }
                 }
             }
-            q.push(now);
         }
 
         answer = max(answer, bomb);
@@ -67,10 +63,9 @@ int main() {
         for(int j=0; j<n; j++)
         {
             cin >> map[i][j];
-            if(map[i][j]) q.push(make_pair(i, j));
+            if(map[i][j]) bombs.push_back({i, j});
         }
     }
-    cnt = q.size();
 
     perm(0);
 
