@@ -2,6 +2,7 @@
 #include <vector>
 #include <unordered_map>
 #include <algorithm>
+#include <climits>
 
 using namespace std;
 
@@ -53,6 +54,7 @@ void perm(int cnt)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> calc;
+    answer = INT_MIN;
 
     vector<int> temp(6);
     for(int i=0; i<calc.size(); i++) if('a' <= calc[i] && calc[i] <= 'f') temp[calc[i] - 'a']++;
