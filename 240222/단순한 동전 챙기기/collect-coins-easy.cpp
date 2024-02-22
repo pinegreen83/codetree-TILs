@@ -7,12 +7,11 @@ using namespace std;
 int answer;
 vector<int> coin;
 vector<int> perms;
-vector<bool> visit(10);
 vector<int> mstart(2);
 vector<int> mend(2);
 vector<vector<int>> coins(10);
 
-void perm(int cnt)
+void perm(int cnt, int start)
 {
     if(cnt == 3)
     {
@@ -30,16 +29,11 @@ void perm(int cnt)
         answer = min(answer, move);
         return;
     }
-    for(int i=0; i<coin.size(); i++)
+    for(int i=start; i<coin.size(); i++)
     {
-        if(!visit[coin[i]])
-        {
-            perms.push_back(coin[i]);
-            visit[coin[i]] = true;
-            perm(cnt+1);
-            perms.pop_back();
-            visit[coin[i]] = false;
-        }
+        perms.push_back(coin[i]);
+        perm(cnt+1, i+1);
+        perms.pop_back();
     }
 }
 
@@ -74,10 +68,11 @@ int main() {
         }
     }
 
+    sort(coin.begin(), coin.end());
     if(coin.size() < 3) cout << -1;
     else
     {
-        perm(0);
+        perm(0, 0);
         cout << answer;
     }
 
