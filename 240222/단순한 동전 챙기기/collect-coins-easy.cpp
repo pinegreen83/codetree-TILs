@@ -74,7 +74,7 @@ int main() {
         }
     }
 
-    if(coins.size() < 3) cout << -1;
+    if(coin.size() < 3) cout << -1;
     else
     {
         perm(0);
