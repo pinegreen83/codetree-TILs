@@ -11,7 +11,7 @@ vector<vector<int>> map;
 
 void perm(int cnt, int line, int minnum)
 {
-    if(cnt == 3)
+    if(cnt == n)
     {
         answer = max(answer, minnum);
         return;
