@@ -16,7 +16,7 @@ void perm(int cnt, int line, int minnum)
         answer = max(answer, minnum);
         return;
     }
-    for(int i=0; i<3; i++)
+    for(int i=0; i<n; i++)
     {
         if(!visit[i])
         {
