@@ -27,7 +27,8 @@ int main() {
         for(int i=0; i<n; i++)
         {
             now += nums[i];
-            for(int j=nums[i]; j<=now; j++)
+            dp[nums[i]] = 1;
+            for(int j=nums[i]+1; j<=now; j++)
             {
                 if(dp[j-nums[i]]) dp[j] = 1;
             }
