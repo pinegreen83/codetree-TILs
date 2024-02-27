@@ -5,7 +5,7 @@ using namespace std;
 
 int n, answer;
 vector<vector<int>> map;
-vector<vector<int>> dirs = {{0, 0}, {-1, 0}, {1, 0}, {0, -1}, {0, 1}, {-2, 0}, {2, 0}, {0, -2}, {0, 2}};
+vector<vector<int>> dirs = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
 bool isin(int x, int y)
 {
@@ -42,7 +42,7 @@ int NumDown(vector<vector<int>>& bombMap)
         for(int j=0; j<n; j++)
         {
             if(bombMap[i][j] == 0) continue;
-            for(int d=1; d<=4; d++)
+            for(int d=0; d<4; d++)
             {
                 int dirx = i + dirs[d][0];
                 int diry = j + dirs[d][1];
@@ -63,23 +63,24 @@ int NumDown(vector<vector<int>>& bombMap)
 int Bomb(int x, int y)
 {
     int nowmax = 0;
-    int dir = 1;
-    for(int b=0; b<3; b++)
+    vector<vector<int>> newmap = map;
+    newmap[x][y] = 0;
+    for(int i=0; i<4; i++)
     {
-        vector<vector<int>> newmap = map;
-        for(int i=0; i<dir; i++)
+        int dirx = x;
+        int diry = y;
+        for(int j=1; j<map[x][y]; j++)
         {
-            int dirx = x + dirs[i][0];
-            int diry = y + dirs[i][1];
+            dirx += dirs[i][0];
+            diry += dirs[i][1];
             if(isin(dirx, diry))
             {
                 newmap[dirx][diry] = 0;
             }
+            else break;
         }
-
-        nowmax = max(nowmax, NumDown(newmap));
-        dir += 4;
     }
+    nowmax = max(nowmax, NumDown(newmap));
 
     return nowmax;
 }
