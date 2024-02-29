@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 int n, answer;
@@ -31,6 +32,7 @@ int main() {
         cin >> temp[0] >> temp[1];
         lines.push_back(temp);
     }
+    sort(lines.begin(), lines.end());
     findmax(0, 0);
     cout << answer;
 
