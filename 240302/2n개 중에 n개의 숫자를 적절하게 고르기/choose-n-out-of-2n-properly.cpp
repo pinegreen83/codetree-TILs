@@ -12,8 +12,7 @@ void numdiv(int cnt, int start, int s)
 {
     if(cnt == n)
     {
-        int b = sum - s;
-        answer = min(answer, abs(b-s));
+        answer = min(answer, abs((sum-s)-s));
         return;
     }
     for(int i=start+1; i<n*2; i++)
