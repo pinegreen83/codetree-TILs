@@ -21,7 +21,12 @@ int main() {
 
     for(int i=0; i<n; i++)
     {
-        if(umap.find(k-nums[i]) != umap.end()) ans += umap[k-nums[i]];
+        int diff = k-nums[i];
+        if(diff == nums[i]) ans += umap[diff]-1;
+        else
+        {
+            if(umap.find(diff) != umap.end()) ans += umap[diff];
+        }
     }
     cout << ans/2;
 
