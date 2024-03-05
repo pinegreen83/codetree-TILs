@@ -11,7 +11,7 @@ unordered_map<int, int> umap;
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n >> k;
-    int a, ans = 0;
+    int ans = 0;
     for(int i=0; i<n; i++)
     {
         cin >> nums[i];
