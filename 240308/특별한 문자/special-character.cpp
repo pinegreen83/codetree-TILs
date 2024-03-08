@@ -9,7 +9,7 @@ int main() {
     string strs;
     cin >> strs;
 
-    unordered_map<char, int> umap;
+    unordered_map<char, long long> umap;
 
     for(int i=0; i<strs.size(); i++)
     {
@@ -18,7 +18,7 @@ int main() {
 
     int now = INT_MAX;
     char first = '0';
-    unordered_map<char, int>::iterator iter;
+    unordered_map<char, long long>::iterator iter;
     for(iter=umap.begin(); iter!=umap.end(); iter++)
     {
         if(iter->second < now)
