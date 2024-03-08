@@ -19,7 +19,7 @@ int main() {
         }
     }
 
-    int ans = 0;
+    long long ans = 0;
     unordered_map<int, int>::iterator iter;
     for(iter=umap.begin(); iter!=umap.end(); iter++)
     {
