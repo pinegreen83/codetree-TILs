@@ -23,8 +23,8 @@ int main() {
         int temp = nums[moves[i][0]];
         nums[moves[i][0]] = nums[moves[i][1]];
         nums[moves[i][1]] = temp;
-        sets[nums[moves[i][0]]].insert(moves[i][1]);
-        sets[nums[moves[i][1]]].insert(moves[i][0]);
+        sets[nums[moves[i][0]]].insert(moves[i][0]);
+        sets[nums[moves[i][1]]].insert(moves[i][1]);
         // cout << moves[i][0] << " " << moves[i][1] << " " << nums[moves[i][0]] << " " << nums[moves[i][1]] << endl;
     }
 
@@ -34,9 +34,9 @@ int main() {
         {
             int temp = nums[moves[j][0]];
             nums[moves[j][0]] = nums[moves[j][1]];
-            sets[nums[moves[j][0]]].insert(moves[j][1]);
             nums[moves[j][1]] = temp;
-            sets[nums[moves[j][1]]].insert(moves[j][0]);
+            sets[nums[moves[j][0]]].insert(moves[j][0]);
+            sets[nums[moves[j][1]]].insert(moves[j][1]);
             // cout << moves[j][0] << " " << moves[j][1] << " " << nums[moves[j][0]] << " " << nums[moves[j][1]] << endl;
         }
     }
