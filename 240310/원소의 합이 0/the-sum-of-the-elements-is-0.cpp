@@ -30,15 +30,7 @@ int main() {
                 for(int j=0; j<n; j++)
                 {
                     if(t == 1) umap[a[j]+b]++;
-                    else
-                    {
-                        int test = (a[j] + b) * -1;
-                        if(umap.find(test) != umap.end())
-                        {
-                            ans += umap[test];
-                            umap[test]--;
-                        }
-                    }
+                    else if(umap.find((a[j] + b) * -1) != umap.end()) ans += umap[(a[j] + b) * -1];
                 }
             }
         }
