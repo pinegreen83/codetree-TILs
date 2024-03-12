@@ -1,26 +1,39 @@
 #include <iostream>
-#include <vector>
+#include <set>
 
 using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, m, a, answer = 0;
+    int n, m, a;
     cin >> n >> m;
-    vector<int> chairs(m+1);
+    set<int> s;
+    set<int>::iterator it;
 
+    bool bCanSeat = true;
     for(int i=0; i<n; i++)
     {
+        if(!bCanSeat) break;
         cin >> a;
-        chairs[a]++;
+        it = s.lower_bound(a);
+        if(a != *it) s.insert(a);
+        else
+        {
+            while(it != s.begin())
+            {
+                it--;
+                if(*it < a-1)
+                {
+                    a--;
+                    break;
+                }
+                else a = *it;
+            }
+            if(a == 0) bCanSeat = false;
+            else s.insert(a);
+        }
     }
-
-    for(int i=1; i<=m; i++)
-    {
-        answer += chairs[i];
-        if(answer > i) answer = i;
-    }
-    cout << answer;
+    cout << s.size();
 
     return 0;
 }
