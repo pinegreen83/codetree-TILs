@@ -14,7 +14,7 @@ int main() {
     {
         int x, y;
         cin >> x >> y;
-        pq.push(make_tuple(-1*x*y, -x, -y));
+        pq.push(make_tuple(-1*(x+y), -x, -y));
     }
 
     for(int i=0; i<m; i++)
@@ -25,7 +25,7 @@ int main() {
         tie(a, b, c) = temp;
         b -= 2;
         c -= 2;
-        pq.push(make_tuple(-1*b*c, b, c));
+        pq.push(make_tuple((b+c), b, c));
     }
 
     tuple<int, int, int> temp = pq.top();
