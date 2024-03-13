@@ -22,7 +22,7 @@ int main() {
         pq.pop();
         if(a-b != 0) pq.push(a-b);
     }
-    cout << pq.top();
+    cout << (pq.empty() ? -1 : pq.top());
 
     return 0;
 }
