@@ -15,16 +15,16 @@ int main() {
     for(int i=1; i<n; i++)
     {
         cin >> a;
-        int large = *s.lower_bound(a+m);
-        int small;
+        if(s.lower_bound(a+m) != s.end())
+        {
+            answer = min(answer, *s.lower_bound(a+m) - a);
+        }
         set<int>::iterator it = s.upper_bound(a-m);
         if(it != s.begin())
         {
             it--;
-            small = *it;
+            answer = min(answer, a - *it);
         }
-        if(large-a >= m) answer = min(answer, large-a);
-        if(a-small >= m) answer = min(answer, a-small);
         s.insert(a);
     }
     cout << (answer == INT_MAX ? -1 : answer) ;
