@@ -19,7 +19,7 @@ int main() {
         if(a-small >= m) answer = min(answer, a-small);
         s.insert(a);
     }
-    cout << answer;
+    cout << (answer == INT_MAX ? -1 : answer) ;
 
     return 0;
 }
