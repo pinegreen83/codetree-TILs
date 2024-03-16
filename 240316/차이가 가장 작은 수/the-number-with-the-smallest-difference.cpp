@@ -15,8 +15,16 @@ int main() {
     for(int i=1; i<n; i++)
     {
         cin >> a;
-        int large = *s.lower_bound(a+m);
-        int small = *s.upper_bound(a-m);
+        int large;
+        if(s.find(a+m) == s.end())
+        {
+            large = *s.upper_bound(a+m);
+        }
+        else
+        {
+            large = a+m;
+        }
+        int small = *s.lower_bound(a-m);
         if(large-a >= m) answer = min(answer, large-a);
         if(a-small >= m) answer = min(answer, a-small);
         s.insert(a);
