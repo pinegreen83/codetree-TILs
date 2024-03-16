@@ -10,7 +10,9 @@ int main() {
     cin >> n >> m;
 
     set<int> s;
-    for(int i=0; i<n; i++)
+    cin >> a;
+    s.insert(a);
+    for(int i=1; i<n; i++)
     {
         cin >> a;
         int large = *s.lower_bound(a+m);
