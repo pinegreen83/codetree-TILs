@@ -16,7 +16,7 @@ int main() {
         if(i < 3) cout << -1 << endl;
         else
         {
-            int f, s, t;
+            long long f, s, t;
             f = pq.top();
             pq.pop();
             s = pq.top();
