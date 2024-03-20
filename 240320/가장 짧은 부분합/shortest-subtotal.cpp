@@ -18,7 +18,7 @@ int main() {
     int answer = n+1;
     for(int i=0; i<n; i++)
     {
-        while(j < n && sum+nums[j] <= s)
+        while(j < n && sum+nums[j] < s)
         {
             sum += nums[j];
             j++;
