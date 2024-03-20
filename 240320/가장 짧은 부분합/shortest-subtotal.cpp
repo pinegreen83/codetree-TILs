@@ -18,17 +18,18 @@ int main() {
     int answer = n+1;
     for(int i=0; i<n; i++)
     {
-        while(j < n && sum+nums[j] < s)
+        while(j < n && sum < s)
         {
             sum += nums[j];
             j++;
         }
+        if(sum < s) break;
 
-        answer = min(answer, j-i+1);
+        answer = min(answer, j-i);
 
         sum -= nums[i];
     }
-    cout << answer;
+    cout << (answer == n+1 ? -1 : answer);
 
     return 0;
 }
