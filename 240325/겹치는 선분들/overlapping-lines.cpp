@@ -42,7 +42,7 @@ int main() {
         if(b == 1)
         {
             uset.insert(c);
-            if((int) uset.size() >= k) start = a;
+            if((int) uset.size() == k) start = a;
         }
         else
         {
