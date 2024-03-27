@@ -31,13 +31,12 @@ int main() {
             if(pq.empty()) places[c] = now++;
             else
             {
-                places[c] = pq.top();
+                places[c] = -pq.top();
                 pq.pop();
             }
         }
-        else pq.push(places[c]);
+        else pq.push(-places[c]);
     }
-
     for(auto i : places) cout << i << " ";
 
     return 0;
