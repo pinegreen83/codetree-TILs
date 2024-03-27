@@ -20,7 +20,7 @@ int main() {
     }
 
     sort(reser.begin(), reser.end());
-    int now = 0;
+    int now = 0, last = -1, out = -1;
     priority_queue<int> pq;
     for(int i=0; i<n*2; i++)
     {
@@ -28,14 +28,42 @@ int main() {
         tie(a, b, c) = reser[i];
         if(b == 1)
         {
-            if(pq.empty()) hotel[c] = now++;
+            if(last == a)
+            {
+                if(-pq.top() == hotel[out])
+                {
+                    int temp = -pq.top();
+                    pq.pop();
+                    if(pq.empty()) hotel[c] = now++;
+                    else
+                    {
+                        hotel[c] = -pq.top();
+                        pq.pop();
+                    }
+                    pq.push(-temp);
+                }
+                else
+                {
+                    hotel[c] = -pq.top();
+                    pq.pop();
+                }
+            }
             else
             {
-                hotel[c] = -pq.top();
-                pq.pop();
+                if(pq.empty()) hotel[c] = now++;
+                else
+                {
+                    hotel[c] = -pq.top();
+                    pq.pop();
+                }
             }
         }
-        else pq.push(-hotel[c]);
+        else 
+        {
+            last = a;
+            out = c;
+            pq.push(-hotel[c]);
+        }
     }
     cout << now;
 
