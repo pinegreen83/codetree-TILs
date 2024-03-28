@@ -18,7 +18,7 @@ int main() {
         else right[i] = right[i+1];
     }
 
-    int ans = 0;
+    long long ans = 0;
     for(int i=1; i<str.size(); i++)
     {
         if(str[i]=='(' && str[i] == str[i-1])
