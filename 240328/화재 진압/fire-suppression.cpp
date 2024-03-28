@@ -8,29 +8,26 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n, m, ans = 0;
     cin >> n >> m;
-    vector<pair<int, int>> maps;
+    vector<int> fires(n);
+    vector<int> firestations(m);
     for(int i=0; i<n; i++)
     {
-        int a;
-        cin >> a;
-        maps.push_back(make_pair(a, -1));
+        cin >> fires[i];
     }
     for(int i=0; i<m; i++)
     {
-        int a;
-        cin >> a;
-        maps.push_back(make_pair(a, 1));
+        cin >> firestations[i];
     }
-    sort(maps.begin(), maps.end());
 
     int j = 0;
-    for(int i=0; i<m+n; i++)
+    for(int i=0; i<n; i++)
     {
-        if(maps[i].second == 1) j=maps[i].first;
-        else
+        while(j < m-1 && abs(fires[i] - firestations[j]) > abs(fires[i] - firestations[j+1]))
         {
-            ans = max(ans, maps[i].first-j);
+            j++;
         }
+
+        ans = max(ans, abs(firestations[j]-fires[i]));
     }
     cout << ans;
 
