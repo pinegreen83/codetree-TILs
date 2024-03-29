@@ -10,20 +10,17 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int j = 1, ans = n+1;
+    int j = 0, cnt = 0, ans = n+1;
     for(int i=0; i<n; i++)
     {
-        if(nums[i] == 1) j = i+1;
-        else continue;
-
-        while(j < n && nums[j] == 2)
+        while(j < n && cnt < k)
         {
+            if(nums[j] == 1) cnt++;
             j++;
         }
         
-        if(j == n) break;
-
-        ans = min(ans, j-i+1);
+        if(cnt == 2) ans = min(ans, j-i);
+        if(nums[i] == 1) cnt--;
     }
     cout << ans;
 
