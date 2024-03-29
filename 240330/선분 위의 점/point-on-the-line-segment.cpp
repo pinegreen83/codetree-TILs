@@ -40,7 +40,7 @@ int main() {
         int leftlow = lowerbound(a);
         int rightlow = lowerbound(b);
 
-        if(nums[leftlow] == a && nums[rightlow] == b) cout << rightlow - leftlow + 1 << "\n";
+        if(nums[leftlow] >= a) cout << rightlow - leftlow + 1 << "\n";
         else cout << rightlow - leftlow << "\n";
     }
     return 0;
