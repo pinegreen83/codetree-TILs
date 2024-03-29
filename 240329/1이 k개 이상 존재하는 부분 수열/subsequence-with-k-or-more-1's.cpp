@@ -21,7 +21,7 @@ int main() {
         if(cnt == k) ans = min(ans, j-i);
         if(nums[i] == 1) cnt--;
     }
-    cout << ans;
+    cout << (ans == n+1 ? -1 : ans);
 
     return 0;
 }
