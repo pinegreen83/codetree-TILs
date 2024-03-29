@@ -18,8 +18,7 @@ int main() {
             if(nums[j] == 1) cnt++;
             j++;
         }
-        
-        if(cnt == 2) ans = min(ans, j-i);
+        if(cnt == k) ans = min(ans, j-i);
         if(nums[i] == 1) cnt--;
     }
     cout << ans;
