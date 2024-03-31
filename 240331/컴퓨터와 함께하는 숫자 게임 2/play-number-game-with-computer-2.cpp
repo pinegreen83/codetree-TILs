@@ -5,14 +5,14 @@
 
 using namespace std;
 
-int m, minnum = INT_MAX, maxnum = INT_MIN;
+long m, minnum = INT_MAX, maxnum = INT_MIN;
 
-void binary(int now)
+void binary(long now)
 {
-    int left = 1, right = m, cnt = 0;
+    long left = 1, right = m, cnt = 0;
     while(left <= right)
     {
-        int mid = (left + right) / 2;
+        long mid = (left + right) / 2;
         if(mid > now) right = mid - 1;
         else left = mid + 1;
         cnt++;
@@ -24,10 +24,10 @@ void binary(int now)
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int a, b;
+    long a, b;
     cin >> m >> a >> b;
 
-    for(int i=a; i<=b; i++)
+    for(long i=a; i<=b; i++)
     {
         binary(i);
     }
