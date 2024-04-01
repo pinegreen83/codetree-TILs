@@ -16,8 +16,10 @@ int main() {
     while(left <= right)
     {
         long mid = (left + right) / 2;
-        if(ispara(mid) > n) right = mid -1;
-        else if(ispara(mid) == n)
+        if(mid % 3 == 0 || mid % 5 == 0) mid--;
+        long cal = ispara(mid);
+        if(cal > n) right = mid -1;
+        else if(cal == n)
         {
             ans = mid;
             break;
