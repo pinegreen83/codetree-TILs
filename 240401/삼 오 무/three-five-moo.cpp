@@ -11,13 +11,12 @@ long ispara(long x)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n;
-    long left = 1, right = n*15, ans = n*15;
-    
+    long left = 1, right = 2000000000, ans = 2000000000;
+
     while(left <= right)
     {
         long mid = (left + right) / 2;
-        long cal = ispara(mid);
-        if(cal >= n) 
+        if(ispara(mid) >= n) 
         {
             right = mid -1;
             ans = min(ans, mid);
