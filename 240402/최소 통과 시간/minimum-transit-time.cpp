@@ -6,9 +6,9 @@ using namespace std;
 int n, m;
 vector<int> nums;
 
-bool pass(long time)
+bool pass(long long time)
 {
-    int cnt = 0;
+    long long cnt = 0;
     for(int i=0; i<m; i++)
     {
         cnt += time/nums[i];
@@ -23,10 +23,10 @@ int main() {
     nums = vector<int>(m);
     for(int i=0; i<m; i++) cin >> nums[i];
 
-    long left = 1, right = nums[m-1]*n, ans = nums[m-1]*n;
+    long long left = 1, right = nums[m-1]*n, ans = nums[m-1]*n;
     while(left <= right)
     {
-        long mid = (left + right) / 2;
+        long long mid = (left + right) / 2;
         if(pass(mid))
         {
             right = mid - 1;
