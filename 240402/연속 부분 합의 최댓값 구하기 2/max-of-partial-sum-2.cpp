@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 using namespace std;
 
@@ -10,15 +11,12 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int sum = 0, ans = 0;
+    int sum = 0, ans = INT_MIN;
     for(int i=0; i<n; i++)
     {
         if(sum < 0) sum = nums[i];
-        else
-        {
-            sum += nums[i];
-            ans = max(ans, sum);
-        }
+        else sum += nums[i];
+        ans = max(ans, sum);
     }
     cout << ans;
 
