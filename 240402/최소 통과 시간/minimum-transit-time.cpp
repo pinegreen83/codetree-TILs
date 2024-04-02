@@ -20,7 +20,7 @@ bool pass(long long time)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n >> m;
-    nums = vector<int>(m);
+    nums = vector<long long>(m);
     for(int i=0; i<m; i++) cin >> nums[i];
 
     long long left = 1, right = nums[m-1]*n, ans = nums[m-1]*n;
