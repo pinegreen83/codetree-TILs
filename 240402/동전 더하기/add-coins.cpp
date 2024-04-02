@@ -10,15 +10,15 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int cnt = n-1, ans = 0;
+    int cnt = n-1, ans = 0, time = 10;
     while(k > 0)
     {
         if(k / nums[cnt])
         {
             ans += k / nums[cnt];
             k = k % nums[cnt];
-            cnt--;
         }
+        cnt--;
     }
     cout << ans;
 
