@@ -4,7 +4,7 @@
 using namespace std;
 
 int n, m;
-vector<int> nums;
+vector<long long> nums;
 
 bool pass(long long time)
 {
