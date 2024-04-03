@@ -9,12 +9,7 @@ vector<vector<float>> nums;
 
 bool comp(const vector<float>& a, const vector<float>& b)
 {
-    if(a[2] > b[2]) return true;
-    else if(a[2] == b[2])
-    {
-        if(a[0] < b[0]) return true;
-    }
-    return false;
+    return a[2] > b[2];
 }
 
 int main() {
@@ -36,16 +31,16 @@ int main() {
     float ans = 0;
     for(auto n : nums)
     {
-        if(m >= n[1])
+        if(m <= 0) break;
+        if(m >= n[0])
         {
             m -= n[0];
             ans += n[1];
         }
         else
         {
-            ans += ((float) m / n[0]) * n[1];
+            ans += n[2] * m;
             m = 0;
-            break;
         }
     }
     cout << fixed;
