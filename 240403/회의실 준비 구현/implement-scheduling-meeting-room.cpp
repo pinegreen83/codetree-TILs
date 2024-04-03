@@ -22,12 +22,11 @@ int main() {
     }
 
     sort(nums.begin(), nums.end(), comp);
-    int start = 0, end = 0, cnt = 0;
+    int end = 0, cnt = 0;
     for(int i=0; i<n; i++)
     {
         if(nums[i].first >= end)
         {
-            start = nums[i].first;
             end = nums[i].second;
             cnt++;
         }
