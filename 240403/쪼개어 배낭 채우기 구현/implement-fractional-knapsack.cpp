@@ -5,9 +5,9 @@
 using namespace std;
 
 int n, m;
-vector<vector<float>> nums;
+vector<vector<double>> nums;
 
-bool comp(const vector<float>& a, const vector<float>& b)
+bool comp(const vector<double>& a, const vector<double>& b)
 {
     return a[2] > b[2];
 }
@@ -15,7 +15,7 @@ bool comp(const vector<float>& a, const vector<float>& b)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n >> m;
-    nums = vector<vector<float>>(n, vector<float>(2));
+    nums = vector<vector<double>>(n, vector<double>(2));
     for(int i=0; i<n; i++)
     {
         cin >> nums[i][0] >> nums[i][1];
@@ -23,12 +23,12 @@ int main() {
 
     for(int i=0; i<n; i++)
     {
-        float val = (float) nums[i][1] / nums[i][0];
+        double val = (double) nums[i][1] / nums[i][0];
         nums[i].push_back(val);
     }
 
     sort(nums.begin(), nums.end(), comp);
-    float ans = 0;
+    double ans = 0;
     for(auto n : nums)
     {
         if(m <= 0) break;
