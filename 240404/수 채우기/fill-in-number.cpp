@@ -14,6 +14,7 @@ int main() {
         cnt++;
         if(n % 2 == 0) ans = min(ans, cnt + n / 2);
     }
+    if(n % 2 == 0) ans = min(ans, cnt + n / 2);
     cout << (ans == INT_MAX ? -1 : ans);
 
     return 0;
