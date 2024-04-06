@@ -43,7 +43,7 @@ int main() {
             }
         }
     }
-    for(int i=2; i<=n; i++) cout << graph[i] << "\n";
+    for(int i=2; i<=n; i++) cout << (graph[i]==INT_MAX ? -1 : graph[i]) << "\n";
 
     return 0;
 }
