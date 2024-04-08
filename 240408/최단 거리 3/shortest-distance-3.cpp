@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <climits>
 
 using namespace std;
 
@@ -19,8 +18,7 @@ int main() {
 
     int start, end;
     cin >> start >> end;
-    vector<int> nodes(n+1, INT_MAX);
-    vector<int> path(n+1);
+    vector<int> nodes(n+1, 1e9);
     vector<bool> visited(n+1);
     nodes[start] = 0;
     for(int i=1; i<=n; i++)
@@ -42,11 +40,7 @@ int main() {
         {
             if(maps[minidx][j] == 0) continue;
 
-            if(nodes[j] > nodes[minidx] + maps[minidx][j])
-            {
-                nodes[j] = nodes[minidx] + maps[minidx][j];
-                path[j] = minidx;
-            }
+            if(nodes[j] > nodes[minidx] + maps[minidx][j]) nodes[j] = nodes[minidx] + maps[minidx][j];
         }
     }
     cout << nodes[end];
