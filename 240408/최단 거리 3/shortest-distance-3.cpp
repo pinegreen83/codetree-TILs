@@ -12,8 +12,16 @@ int main() {
     {
         int a, b, c;
         cin >> a >> b >> c;
-        maps[a][b] = c;
-        maps[b][a] = c;
+        if(maps[a][b] != 0)
+        {
+            maps[a][b] = min(maps[a][b], c);
+        }
+        else maps[a][b] = c;
+        if(maps[b][a] != 0)
+        {
+            maps[b][a] = min(maps[b][a], c);
+        }
+        else maps[b][a] = c;
     }
 
     int start, end;
