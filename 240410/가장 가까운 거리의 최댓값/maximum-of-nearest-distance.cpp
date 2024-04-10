@@ -24,7 +24,6 @@ int main() {
     for(int i=0; i<3; i++)
     {
         int now = starts[i];
-        // cout << "start : " << now << "\n";
         priority_queue<pair<int, int>> pq;
         nodes[i][now] = 0;
         pq.push(make_pair(0, now));
@@ -47,19 +46,14 @@ int main() {
                 }
             }
         }
-        // for(int j=1; j<=n; j++) cout << i << " " << j << " " << nodes[i][j] << "\n";
-        // cout << "\n";
     }
-    // cout << "\n";
 
     for(int i=1; i<=n; i++)
     {
         int temp = INT_MAX;
-        // cout << "start : " << i << "\n";
         for(int j=0; j<3; j++)
         {
             temp = min(temp, nodes[j][i]);
-            // cout << j << " " << i << " " << nodes[j][j] << "\n";
         }
         ans = max(temp, ans);
     }
