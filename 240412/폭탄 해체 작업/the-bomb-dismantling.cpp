@@ -1,39 +1,44 @@
 #include <iostream>
+#include <vector>
 #include <queue>
+#include <algorithm>
 
 using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n;
+    int n, maxtime;
     cin >> n;
-    priority_queue<pair<int, int>> pq;
+    vector<vector<int>> nums(n, vector<int>(2));
     for(int i=0; i<n; i++)
     {
         int a, b;
         cin >> a >> b;
-        pq.push(make_pair(-b, a));
+        nums[i][0] = b;
+        nums[i][1] = a;
+        maxtime = max(maxtime, b);
     }
 
-    int time = 0, ans = 0;
-    while(!pq.empty())
+    int ans = 0, size = n-1;
+    priority_queue<int> pq;
+    sort(nums.begin(), nums.end());
+
+    for(int i=maxtime; i>=1; i--)
     {
-        if(time < -pq.top().first)
+        while(size >= 0 && nums[size][0] == i)
         {
-            int now = -pq.top().first;
-            int val = pq.top().second;
-            pq.pop();
-            if(val < pq.top().second)
-            {
-                ans += pq.top().second;
-                pq.pop();
-            }
-            else ans += val;
+            pq.push(nums[size][1]);
+            size--;
         }
-        time++;
-        while(time == -pq.top().first) pq.pop();
+
+        if(!pq.empty())
+        {
+            ans += pq.top();
+            pq.pop();
+        }
     }
     cout << ans;
+
 
     return 0;
 }
