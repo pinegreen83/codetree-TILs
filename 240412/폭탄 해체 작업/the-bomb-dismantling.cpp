@@ -20,8 +20,15 @@ int main() {
     {
         if(time < -pq.top().first)
         {
-            ans += pq.top().second;
+            int now = -pq.top().first;
+            int val = pq.top().second;
             pq.pop();
+            if(val < pq.top().second)
+            {
+                ans += pq.top().second;
+                pq.pop();
+            }
+            else ans += val;
         }
         time++;
         while(time == -pq.top().first) pq.pop();
