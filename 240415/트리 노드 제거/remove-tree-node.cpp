@@ -20,19 +20,20 @@ void DFS(int now)
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n;
+    int n, root;
     cin >> n;
     vector<int> parents(n+1);
     edges = vector<vector<int>>(n+1);
     for(int i=0; i<n; i++)
     {
         cin >> parents[i];
-        if(i != 0) edges[parents[i]].push_back(i);
+        if(parents[i] != -1) edges[parents[i]].push_back(i);
+        else root = i;
     }
 
     int del, dparent;
     cin >> del;
-    if(del != 0)
+    if(del != root)
     {
         dparent = parents[del];
         for(int i=0; i<edges[dparent].size(); i++)
@@ -44,7 +45,7 @@ int main() {
             }
         }
         
-        DFS(0);
+        DFS(root);
     }
     cout << ans;
     
