@@ -1,0 +1,48 @@
+#include <iostream>
+#include <vector>
+
+#define MAX_N 10000
+
+using namespace std;
+
+int root = 0, cnt = 0;
+vector<int> parents[MAX_N + 1];
+
+void DFS(int start)
+{
+    int now = start;
+    while(parents[now].size() == 1)
+    {
+        int temp = parents[now][0];
+        now = temp;
+    }
+    if(start != now)
+    {
+        if(root == 0)
+        {
+            root = now;
+            cnt++;
+        }
+        else if(root == now) cnt++;
+    }
+}
+
+int main() {
+    // 여기에 코드를 작성해주세요.
+    int m;
+    cin >> m;
+    for(int i=0; i<m; i++)
+    {
+        int a, b;
+        cin >> a >> b;
+        parents[b].push_back(a);
+    }
+
+    for(int i=1; i<=10; i++)
+    {
+        DFS(i);
+    }
+    cout << (cnt == m ? 1 : 0);
+
+    return 0;
+}
