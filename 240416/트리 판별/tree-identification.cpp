@@ -11,10 +11,13 @@ vector<int> parents[MAX_N + 1];
 void DFS(int start)
 {
     int now = start;
+    vector<bool> visited(MAX_N+1);
+    visited[now] = true;
     while(parents[now].size() == 1)
     {
         int temp = parents[now][0];
-        now = temp;
+        if(!visited[temp]) now = temp;
+        else break;
     }
     if(start != now)
     {
