@@ -16,8 +16,9 @@ void DFS(int start)
     while(parents[now].size() == 1)
     {
         int temp = parents[now][0];
-        if(!visited[temp]) now = temp;
-        else break;
+        if(visited[temp]) break;
+        visited[temp] = true;
+        now = temp;
     }
     if(start != now)
     {
