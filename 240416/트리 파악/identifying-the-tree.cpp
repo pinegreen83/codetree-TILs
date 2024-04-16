@@ -7,15 +7,24 @@ using namespace std;
 
 int cnt = 0;
 vector<int> dist;
-vector<vector<int>> child;
+vector<bool> leaf, visited;
+vector<vector<int>> edges;
 
 void DFS(int start, int h)
 {
     dist[start] = h;
-    for(int i=0; i<child[start].size(); i++)
+    int cnt = 0;
+    for(int i=0; i<edges[start].size(); i++)
     {
-        DFS(child[start][i], h+1);
+        int now = edges[start][i];
+        if(!visited[now])
+        {
+            visited[now] = true;
+            cnt++;
+            DFS(now, h+1);
+        }
     }
+    if(cnt) leaf[start] = true;
 }
 
 int main() {
@@ -23,20 +32,24 @@ int main() {
     int n;
     cin >> n;
     dist = vector<int>(n+1);
-    child = vector<vector<int>>(n+1);
+    leaf = vector<bool>(n+1);
+    visited = vector<bool>(n+1);
+    edges = vector<vector<int>>(n+1);
     for(int i=1; i<n; i++)
     {
         int a, b;
         cin >> a >> b;
-        child[a].push_back(b);
+        edges[a].push_back(b);
+        edges[b].push_back(a);
     }
 
+    visited[1] = true;
     DFS(1, 0);
 
     int ans = 0;
     for(int i=1; i<=n; i++)
     {
-        if(child[i].size() == 0) ans += dist[i];
+        if(!leaf[i]) ans += dist[i];
     }
     cout << ans%2;
 
