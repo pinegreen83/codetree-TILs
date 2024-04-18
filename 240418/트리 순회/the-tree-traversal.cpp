@@ -1,39 +1,37 @@
 #include <iostream>
-#include <vector>
 #include <unordered_map>
 
 using namespace std;
 
-unordered_map<char, int> umap;
-vector<char> tree(100, '.');
+unordered_map<char, pair<char, char>> umap;
 
-void preorder(int start)
+void preorder(char start)
 {
-    if(tree[start] != '.')
+    if(start != '.')
     {
-        cout << tree[start];
-        preorder(start*2);
-        preorder(start*2 + 1);
+        cout << start;
+        preorder(umap[start].first);
+        preorder(umap[start].second);
     }
 }
 
-void inorder(int start)
+void inorder(char start)
 {
-    if(tree[start] != '.')
+    if(start != '.')
     {
-        inorder(start*2);
-        cout << tree[start];
-        inorder(start*2 + 1);
+        inorder(umap[start].first);
+        cout << start;
+        inorder(umap[start].second);
     }
 }
 
-void postorder(int start)
+void postorder(char start)
 {
-    if(tree[start] != '.')
+    if(start != '.')
     {
-        postorder(start*2);
-        postorder(start*2+1);
-        cout << tree[start];
+        postorder(umap[start].first);
+        postorder(umap[start].second);
+        cout << start;
     }
 }
 
@@ -41,24 +39,19 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n;
     cin >> n;
-    umap['A'] = 1;
-    tree[umap['A']] = 'A';
+    
     for(int i=0; i<n; i++)
     {
         char a, b, c;
         cin >> a >> b >> c;
-        int parent = umap[a];
-        umap[b] = parent*2;
-        tree[umap[b]] = b;
-        umap[c] = parent*2 + 1;
-        tree[umap[c]] = c;
+        umap[a] = make_pair(b, c);
     }
 
-    preorder(1);
+    preorder('A');
     cout << "\n";
-    inorder(1);
+    inorder('A');
     cout << "\n";
-    postorder(1);
+    postorder('A');
 
     return 0;
 }
