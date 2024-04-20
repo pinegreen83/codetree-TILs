@@ -3,7 +3,7 @@
 
 using namespace std;
 
-vector<int> dp, parents;
+vector<int> dp;
 vector<vector<int>> edges;
 
 void Dfs(int before, int now)
@@ -22,7 +22,6 @@ int main() {
     int n;
     cin >> n;
     dp = vector<int>(n+1);
-    parents = vector<int>(n+1);
     edges = vector<vector<int>>(n+1);
     for(int i=2; i<=n; i++)
     {
@@ -30,7 +29,6 @@ int main() {
         cin >> t >> a >> p;
         if(t) dp[i] = a;
         else dp[i] = -a;
-        parents[i] = p;
         edges[p].push_back(i);
     }
 
