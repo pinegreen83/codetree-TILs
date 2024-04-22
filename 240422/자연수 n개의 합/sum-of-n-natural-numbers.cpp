@@ -3,27 +3,21 @@
 
 using namespace std;
 
-long long s;
-bool Numsum(long long mid)
-{
-    long long num = (mid*(mid+1)) / 2;
-    return num <= s;
-}
-
 int main() {
     // 여기에 코드를 작성해주세요.
+    long long s;
     cin >> s;
 
-    long long left = 1, right = 1e9, ans = 0;
+    long long left = 1, right = 1e9, ans = 1e9;
     while(left <= right)
     {
         long long mid = (left + right) / 2;
-        if(!Numsum(mid)) right = mid - 1;
-        else 
+        if(mid*(mid+1) / 2 >= s) 
         {
-            left = mid + 1;
-            ans = max(ans, mid);
+            right = mid - 1;
+            ans = min(ans, mid);
         }
+        else left = mid + 1;
     }
     cout << ans;
 
