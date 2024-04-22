@@ -34,7 +34,7 @@ int main() {
     {
         int a, b;
         cin >> a >> b;
-        dp[a] = b;
+        dp[a] += b;
     }
 
     DFS(1);
