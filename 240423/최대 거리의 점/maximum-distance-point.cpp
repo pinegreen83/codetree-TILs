@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -29,8 +30,9 @@ int main() {
     cin >> n >> m;
     nums = vector<int>(n);
     for(int i=0; i<n; i++) cin >> nums[i];
+    sort(nums.begin(), nums.end());
 
-    int left = 1, right = 1e9, ans = 0;
+    int left = 0, right = 1e9, ans = 0;
     while(left <= right)
     {
         int mid = (left + right) / 2;
