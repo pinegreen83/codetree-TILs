@@ -30,7 +30,7 @@ int main() {
     nums = vector<int>(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int left = 1, right = 28, ans = 0;
+    int left = 1, right = 1e9, ans = 0;
     while(left <= right)
     {
         int mid = (left + right) / 2;
