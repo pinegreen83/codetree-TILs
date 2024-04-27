@@ -51,6 +51,11 @@ int main() {
             }
         }
         if(cnt > 1) break;
+        else if(cnt == 0)
+        {
+            ans = 0;
+            break;
+        }
 
         temp = vector<vector<int>>(n, vector<int>(m));
         visited = vector<vector<bool>>(n, vector<bool>(m));
