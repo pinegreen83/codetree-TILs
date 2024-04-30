@@ -24,12 +24,10 @@ int main() {
             int diff = nums[right] - nums[left];
             float r = (float) diff / 2;
             ans += (float) a + (b * r);
-            // cout << left << " " << right << " ";
             right++;
             left = right;
-            // cout << left << " " << right << "\n";
         }
-        right++;
+        else right++;
     }
     if(left == n-1) ans += a;
     cout << ans;
