@@ -16,6 +16,7 @@ int main() {
     float maxr = (float) a / b;
     int left = 0, right = 0, cnt = 0;
     float ans = 0;
+    cout << maxr << "\n";
     while(right < n)
     {
         if(nums[right+1] - nums[left] > maxr*2)
@@ -23,8 +24,10 @@ int main() {
             int diff = nums[right] - nums[left];
             float r = (float) diff / 2;
             ans += (float) a + (b * r);
+            cout << left << " " << right << " ";
             right++;
             left = right;
+            cout << left << " " << right << "\n";
         }
         right++;
     }
