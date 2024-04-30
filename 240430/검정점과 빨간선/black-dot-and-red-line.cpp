@@ -30,6 +30,8 @@ int main() {
         else right++;
     }
     if(left == n-1) ans += a;
+    cout << fixed;
+    cout.precision(1);
     cout << ans;
 
     return 0;
