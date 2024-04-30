@@ -49,10 +49,14 @@ int main() {
         for(int j=0; j<n; j++) cin >> map[i][j];
     }
 
-    visited = vector<vector<bool>>(n, vector<bool>(n));
-    visited[0][0] = true;
-    DFS(0, 0, 1, 0);
-    cout << ans;
+    if(map[0][0] == '(')
+    {
+        visited = vector<vector<bool>>(n, vector<bool>(n));
+        visited[0][0] = true;
+        DFS(0, 0, 1, 0);
+        cout << ans;
+    }
+    else cout << ans;
 
     return 0;
 }
