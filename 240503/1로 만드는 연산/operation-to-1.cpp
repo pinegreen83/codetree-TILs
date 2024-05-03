@@ -1,20 +1,28 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, ans = 0;
+    int n;
     cin >> n;
+    vector<int> dp(n+1, 1000);
 
-    while(n > 1)
+    dp[n] = 0;
+    for(int i=n; i>=1; i--)
     {
-        if(n % 3 == 0) n /= 3;
-        else if(n % 2 == 0) n /= 2;
-        else n -= 1;
-        ans++;
+        if(i % 3 == 0)
+        {
+            dp[i/3] = min(dp[i/3], dp[i] + 1);
+        }
+        if(i % 2 == 0)
+        {
+            dp[i/2] = min(dp[i/2], dp[i] + 1);
+        }
+        dp[i-1] = min(dp[i-1], dp[i] + 1);
     }
-    cout << ans;
+    cout << dp[1];
 
     return 0;
 }
