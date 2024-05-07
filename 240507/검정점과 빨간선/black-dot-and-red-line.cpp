@@ -13,7 +13,7 @@ int main() {
     
     sort(blacks.begin(), blacks.end());
 
-    vector<double> dp(n, 1'000'000);
+    vector<double> dp(n, 1'000'000'000);
     dp[0] = a;
     for(int i=1; i<n; i++)
     {
