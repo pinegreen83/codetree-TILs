@@ -15,11 +15,16 @@ void DFS(int start, int sum, int cnt)
     }
     for(int i=start+1; i<=n; i++)
     {
+        if(start == 0)
+        {
+            DFS(i, nums[i], 1);
+            continue;
+        }
         int l = sum, r = nums[i];
         bool carry = true;
         while(l > 0 && r > 0)
         {
-            if(sum % 10 + nums[i] % 10 < 10)
+            if(l % 10 + r % 10 < 10)
             {
                 l /= 10;
                 r /= 10;
@@ -31,7 +36,7 @@ void DFS(int start, int sum, int cnt)
             }
         }
         if(carry) DFS(i, sum+nums[i], cnt+1);
-        DFS(i, nums[i], cnt);
+        DFS(i, sum, cnt);
     }
 }
 
