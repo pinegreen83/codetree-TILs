@@ -6,6 +6,17 @@ using namespace std;
 int n, ans = 0;
 vector<int> nums;
 
+bool Carry(int a, int b)
+{
+    while(true)
+    {
+        if(a % 10 + b % 10 > 9) return true;
+        a /= 10;
+        b /= 10;
+        if(a == 0 && b == 0) return false;
+    }
+}
+
 void DFS(int start, int sum, int cnt)
 {
     if(start == n)
@@ -20,23 +31,8 @@ void DFS(int start, int sum, int cnt)
             DFS(i, nums[i], 1);
             continue;
         }
-        int l = sum, r = nums[i];
-        bool carry = true;
-        while(l > 0 && r > 0)
-        {
-            if(l % 10 + r % 10 < 10)
-            {
-                l /= 10;
-                r /= 10;
-            }
-            else
-            {
-                carry = false;
-                break;
-            }
-        }
-        if(carry) DFS(i, sum+nums[i], cnt+1);
-        else DFS(i, sum, cnt);
+        if(Carry(sum, nums[i])) DFS(i, sum, cnt);
+        else DFS(i, sum+nums[i], cnt+1);
     }
 }
 
