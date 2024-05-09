@@ -19,11 +19,7 @@ bool Carry(int a, int b)
 
 void DFS(int start, int sum, int cnt)
 {
-    if(start == n)
-    {
-        ans = max(ans, cnt);
-        return;
-    }
+    ans = max(ans, cnt);
     for(int i=start+1; i<=n; i++)
     {
         if(start == 0)
