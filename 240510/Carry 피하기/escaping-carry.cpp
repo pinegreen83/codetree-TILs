@@ -36,7 +36,7 @@ void DFS(int start, int sum, int cnt)
             }
         }
         if(carry) DFS(i, sum+nums[i], cnt+1);
-        DFS(i, sum, cnt);
+        else DFS(i, sum, cnt);
     }
 }
 
