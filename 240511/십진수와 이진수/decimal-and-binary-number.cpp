@@ -17,17 +17,18 @@ int main() {
         a *= 2;
     }
     goal *= 17;
-    string ans, temp;
+    string temp;
     while(goal)
     {
         if(goal % 2 == 0) temp += '0';
         else temp+= '1';
         goal /= 2;
     }
+
     for(int i=temp.size()-1; i>=0; i--)
     {
-        ans += temp[i];
+        cout << temp[i-1];
     }
-    cout << ans;
+    
     return 0;
 }
