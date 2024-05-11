@@ -7,7 +7,7 @@ int main() {
     string n;
     cin >> n;
 
-    int a = 1, goal = 0;
+    long long a = 1, goal = 0;
     for(int i=n.size()-1; i>=0; i--)
     {
         if(n[i] == '1')
