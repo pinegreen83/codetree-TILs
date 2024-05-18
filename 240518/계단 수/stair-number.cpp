@@ -29,7 +29,7 @@ int main() {
     int ans = 0;
     for(int i=0; i<=9; i++)
     {
-        ans += dp[i][n-1];
+        ans = (ans + dp[i][n-1]) % 1000000007;
     }
     cout << ans;
 
