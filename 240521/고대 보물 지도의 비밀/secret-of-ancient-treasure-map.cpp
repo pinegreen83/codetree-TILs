@@ -26,9 +26,10 @@ int main() {
         }
         else
         {
-            for(int j=0; j<=k; j++)
+            for(int j=1; j<=k; j++)
             {
-                dp[i][j] = dp[i-1][j-1] + nums[i];
+                dp[i][j] = max(dp[i-1][j-1] + nums[i], nums[i]);
+                ans = max(ans, dp[i][j]);
             }
         }
     }
