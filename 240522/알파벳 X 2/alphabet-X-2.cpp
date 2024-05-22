@@ -20,8 +20,6 @@ int main() {
             {
                 check[now-'A'] = 1;
                 pq.push(make_pair(-i, j));
-                // pq.push(make_pair(-i, 1));
-                // pq.push(make_pair(-j, -1));
                 break;
             }
         }
