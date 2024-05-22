@@ -27,19 +27,22 @@ int main() {
         }
     }
 
-    int cnt = 1, ans = 0, s = -pq.top().first, e = pq.top().second;
-    pq.pop();
-    while(!pq.empty())
+    int ans = 0, qsize = pq.size();
+    for(int i=0; i<qsize; i++)
     {
-        if(-pq.top().first < e && e < pq.top().second) cnt++;
-        else 
-        {
-            ans = max(ans, cnt);
-            cnt = 1;
-        }
+        int s = -pq.top().first, e = pq.top().second;
         pq.pop();
+        priority_queue<pair<int, int>> temp;
+        while(!pq.empty())
+        {
+            int a = -pq.top().first, b = pq.top().second;
+            pq.pop();
+            if(a < e && e < b) ans++;
+            temp.push(make_pair(-a, b));
+        }
+        pq = temp;
     }
-    cout << (ans * (ans - 1) / 2);
+    cout << ans;
 
     return 0;
 }
