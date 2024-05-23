@@ -32,7 +32,7 @@ int main() {
 
     sort(result.rbegin(), result.rend());
 
-    int ans = 0;
+    int ans = -1;
     bool finish = false;
     vector<bool> visited(n+1);
     queue<pair<int, int>> q;
