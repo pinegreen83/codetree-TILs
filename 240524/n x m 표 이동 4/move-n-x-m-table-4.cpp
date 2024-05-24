@@ -37,7 +37,7 @@ int main() {
             {
                 if(i == s && j == e) continue;
                 if(map[i][j] == -1) continue;
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                dp[i][j] = (dp[i-1][j] + dp[i][j-1]) % 1'000'000'007;
             }
         }
         pq.pop();
