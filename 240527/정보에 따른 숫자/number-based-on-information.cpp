@@ -9,6 +9,8 @@ int main() {
     cin >> n >> a >> b;
 
     priority_queue<pair<int, string>> pq;
+    pq.push(make_pair(-a, "Start"));
+    pq.push(make_pair(-b, "End"));
     for(int i=0; i<n; i++)
     {
         string type;
@@ -19,25 +21,65 @@ int main() {
 
     string now = pq.top().second, before;
     int nownum = -pq.top().first, beforenum, ans = 0;
+    bool check = false;
     pq.pop();
-    while(!pq.empty())
+    while(now != "End")
     {
         before = now;
         beforenum = nownum;
         now = pq.top().second;
         nownum = -pq.top().first;
-        if(before == "NS" || now == "NS")
+        int diff = nownum - beforenum - 1;
+        // cout << before << " " << beforenum << " " << now << " " << nownum << " " << diff << "\n";
+        // cout << "before ans : " << ans;
+        if(now == "NS")
         {
-            int diff = nownum - beforenum - 1;
-            if(diff % 2 == 1) ans += diff / 2 + 2;
-            else ans += diff / 2 + 1;
+            if(before == "S")
+            {
+                if(diff % 2 == 1) ans += (diff / 2) + 1;
+                else ans += (diff / 2);
+            }
+            else check = false;
         }
-        else if(before == "S" && now == "S")
+        else if(now == "S")
         {
-            int diff = nownum - beforenum;
-            ans += diff;
+            if(before == "NS")
+            {
+                if(diff % 2 == 1) ans += (diff / 2) + 2;
+                else ans += (diff / 2) + 1;
+                check = true;
+            }
+            else if(before == "S")
+            {
+                ans += diff + 1;
+            }
+            else
+            {
+                ans += diff + 2;
+                check = true;
+            }
+        }
+        else
+        {
+            if(before == "S")
+            {
+                ans += diff + 1;
+            }
         }
         pq.pop();
+        // cout << " after ans : " << ans << "\n";
+    }
+
+    if(!pq.empty())
+    {
+        string next = pq.top().second;
+        if(next == "S")
+        {
+            int nextnum = -pq.top().first;
+            int nowbeforediff = nownum - beforenum;
+            int nextnowdiff = nextnum - nownum;
+            if(nextnowdiff >= nowbeforediff) ans++;
+        }
     }
     cout << ans;
 
