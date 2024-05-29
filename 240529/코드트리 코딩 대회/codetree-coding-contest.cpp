@@ -16,6 +16,7 @@ void Find(int cnt, vector<int>& members)
         ans = min(ans, (int)members.size());
         return;
     }
+    if(nums[cnt] > m) solve = false;
     for(int i=0; i<members.size(); i++)
     {
         if(members[i] + nums[cnt] <= m)
@@ -43,7 +44,7 @@ int main() {
     vector<int> members;
     Find(0, members);
 
-    cout << ans;
+    cout << (solve ? ans : -1);
 
     return 0;
 }
