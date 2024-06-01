@@ -23,10 +23,14 @@ int main() {
         }
         idx++;
     }
-    if(nums[idx] > 1)
+    while(idx < nums.size())
     {
-        nums[idx] = 0;
-        nums[idx+1] += 1;
+        if(nums[idx] > 1)
+        {
+            nums[idx] = 0;
+            nums[idx+1] += 1;
+        }
+        idx++;
     }
 
     int start = 0;
