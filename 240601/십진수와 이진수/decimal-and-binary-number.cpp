@@ -16,10 +16,17 @@ int main() {
             nums[idx] += 1;
             nums[idx+4] += 1;
         }
-        if(nums[idx] > 1)
+        for(int i=nums.size()-1; i>=0; i--) cout << nums[i];
+        cout << "\n";
+        int temp = idx;
+        while(temp < nums.size())
         {
-            nums[idx] = 0;
-            nums[idx+1] += 1;
+            if(nums[temp] > 1)
+            {
+                nums[temp] = 0;
+                nums[temp+1] += 1;
+            }
+            temp++;
         }
         idx++;
     }
