@@ -16,8 +16,6 @@ int main() {
             nums[idx] += 1;
             nums[idx+4] += 1;
         }
-        // for(int i=nums.size()-1; i>=0; i--) cout << nums[i];
-        // cout << "\n";
         int temp = idx;
         while(temp < nums.size())
         {
