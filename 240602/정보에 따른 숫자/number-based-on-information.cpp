@@ -43,7 +43,7 @@ int main() {
             int s = max(a, mid+1);
             int e = min(b, end);
             if(e >= s) ans += e - s + 1;
-            if(now.second == 0 && a <= mid && mid <= b) ans++;
+            if(now.second == 0 && a <= mid && mid <= b && (start%2 == end%2)) ans++;
         }
     }
     cout << ans;
