@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <climits>
+
+#define MIN 10'000'000
 
 using namespace std;
 
@@ -14,7 +15,7 @@ int main() {
     vector<int> sums(n+1);
     for(int i=1; i<=n; i++) sums[i] = sums[i-1] + nums[i-1];
 
-    vector<vector<int>> dp(n+1, vector<int>(M+1, INT_MIN));
+    vector<vector<int>> dp(n+1, vector<int>(M+1, MIN));
     dp[0][0] = 0;
 
     for(int m=1; m<=M; m++)
@@ -28,7 +29,7 @@ int main() {
         }
     }
 
-    int ans = INT_MIN;
+    int ans = MIN;
     for(int i=1; i<=n; i++)
     {
         ans = max(ans, dp[i][M]);
