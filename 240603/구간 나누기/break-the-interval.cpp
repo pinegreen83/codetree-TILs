@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#define MIN 10'000'000
+#define MIN -10'000'000
 
 using namespace std;
 
