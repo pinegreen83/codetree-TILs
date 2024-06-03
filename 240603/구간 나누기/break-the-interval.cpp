@@ -22,7 +22,7 @@ int main() {
     {
         for(int i=m * 2; i<=n; i++)
         {
-            for(int j=(m-1) * 2; j<i-1; j++)
+            for(int j=(m-1) * 2; j<=i-2; j++)
             {
                 dp[i][m] = max(dp[i][m], dp[j][m-1] + (sums[i] - sums[j+1]));
             }
@@ -30,7 +30,7 @@ int main() {
     }
 
     int ans = MIN;
-    for(int i=1; i<=n; i++)
+    for(int i=2*M; i<=n; i++)
     {
         ans = max(ans, dp[i][M]);
     }
