@@ -8,11 +8,17 @@ int main() {
     int a, b;
     cin >> a >> b;
 
+    bool comp = a > b;
     int move = 0, cnt = 1, before = a;
-    while(before <= b)
+    while(true)
     {
         int now = a + cnt;
-        if(now >= b) 
+        if(!comp && now >= b) 
+        {
+            move += abs(before - b);
+            break;
+        }
+        else if(comp && now <= b)
         {
             move += abs(before - b);
             break;
