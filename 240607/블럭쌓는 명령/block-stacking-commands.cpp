@@ -14,7 +14,7 @@ int main() {
         int a, b;
         cin >> a >> b;
         nums[a] += 1;
-        if(b+1 <= n) nums[b+1] -= 1;
+        nums[b+1] -= 1;
     }
 
     vector<int> ans(n);
