@@ -8,7 +8,7 @@ int main() {
     // 여기에 코드를 작성해주세요.
     int n, k;
     cin >> n >> k;
-    vector<int> nums(n+2);
+    vector<int> nums(n+1);
     for(int i=0; i<k; i++)
     {
         int a, b;
