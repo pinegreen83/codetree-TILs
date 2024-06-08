@@ -32,6 +32,7 @@ int main() {
                 start = nums[i];
             }
         }
+        ans = max(ans, cnt);
     }
     cout << ans;
 
