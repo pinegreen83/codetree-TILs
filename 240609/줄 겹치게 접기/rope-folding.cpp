@@ -3,11 +3,31 @@
 
 using namespace std;
 
+int n, l;
+vector<int> nums;
+
+bool check(bool isfloat, float left, float right)
+{
+    while(left >= 0 && right <= l)
+    {
+        if(isfloat)
+        {
+            if(nums[left-0.5] != nums[right+0.5]) return false;
+        }
+        else 
+        {
+            if(nums[left] != nums[right]) return true;
+        }
+        left--;
+        right++;
+    }
+    return true;
+}
+
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, l;
     cin >> n >> l;
-    vector<int> nums(l+1);
+    nums = vector<int>(l+1);
     nums[0] = 1;
     nums[l] = 1;
     for(int i=0; i<n; i++)
@@ -18,29 +38,11 @@ int main() {
     }
 
     int ans = 0;
-    for(int i=1; i<l; i++)
+    bool chan = true;
+    for(float f=0.5; f<=l-0.5; f+=0.5)
     {
-        int left = i, right = i;
-        bool inc = true;
-        while(left >= 0 && right <= l)
-        {
-            left--;
-            right++;
-            if(nums[left] != nums[right]) inc = false;
-        }
-        if(inc) ans++;
-    }
-    for(float f=0.5; f<=l-0.5; f++)
-    {
-        float left = f, right = f;
-        bool inc = true;
-        while(left >= 0 && right <= l)
-        {
-            if(nums[left-0.5] != nums[right+0.5]) inc = false;
-            left--;
-            right++;
-        }
-        if(inc) ans++;
+        if(check(chan, f, f))ans++;
+        chan = !chan;
     }
     cout << ans;
 
