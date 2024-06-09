@@ -20,7 +20,6 @@ int main() {
     int ans = 0;
     for(int i=1; i<l; i++)
     {
-        cout << i;
         int left = i, right = i;
         bool inc = true;
         while(left >= 0 && right <= l)
