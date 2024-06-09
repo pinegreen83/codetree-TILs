@@ -16,7 +16,7 @@ bool check(bool isfloat, float left, float right)
         }
         else 
         {
-            if(nums[left] != nums[right]) return true;
+            if(nums[left] != nums[right]) return false;
         }
         left--;
         right++;
