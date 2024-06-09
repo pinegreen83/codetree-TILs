@@ -20,6 +20,7 @@ int main() {
     int ans = 0;
     for(int i=1; i<l; i++)
     {
+        cout << i;
         int left = i, right = i;
         bool inc = true;
         while(left >= 0 && right <= l)
@@ -30,7 +31,7 @@ int main() {
         }
         if(inc) ans++;
     }
-    cout << ans;
+    cout << (l == 1 ? 1 : ans);
 
     return 0;
 }
