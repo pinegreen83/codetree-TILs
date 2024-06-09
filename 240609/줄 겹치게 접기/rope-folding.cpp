@@ -30,7 +30,19 @@ int main() {
         }
         if(inc) ans++;
     }
-    cout << (l == 1 ? 1 : ans);
+    for(float f=0.5; f<=l-0.5; f++)
+    {
+        float left = f, right = f;
+        bool inc = true;
+        while(left >= 0 && right <= l)
+        {
+            if(nums[left-0.5] != nums[right+0.5]) inc = false;
+            left--;
+            right++;
+        }
+        if(inc) ans++;
+    }
+    cout << ans;
 
     return 0;
 }
