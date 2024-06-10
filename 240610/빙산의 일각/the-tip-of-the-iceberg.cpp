@@ -41,8 +41,8 @@ int main() {
             visited[now] = true;
             if(!visited[now-1] && !visited[now+1]) cnt++;
             else if(visited[now-1] && visited[now+1]) cnt--;
-            ans = max(ans, cnt);
         }
+        ans = max(ans, cnt);
     }
     cout << ans;
 
