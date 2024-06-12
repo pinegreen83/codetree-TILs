@@ -1,10 +1,11 @@
 #include <iostream>
 #include <vector>
+#include <set>
 
 using namespace std;
 
 int n, k, ans = 0;
-vector<vector<int>> same, diff;
+vector<set<int>> same, diff;
 vector<char> comb, type = {'A', 'B', 'C'};
 
 void backtrack(int cnt)
@@ -20,19 +21,19 @@ void backtrack(int cnt)
         bool fine = true;
         if(same[cnt].size() != 0)
         {
-            for(int j=0; j<same[cnt].size(); j++)
+            for(auto s : same[cnt])
             {
-                if(comb[same[cnt][j]] != ' ')
+                if(comb[s] != ' ')
                 {
-                    if(comb[cnt] != comb[same[cnt][j]]) fine = false;
+                    if(comb[cnt] != comb[s]) fine = false;
                 }
             }
         }
         if(diff[cnt].size() != 0)
         {
-            for(int j=0; j<diff[cnt].size(); j++)
+            for(auto d : diff[cnt])
             {
-                if(comb[cnt] == comb[diff[cnt][j]]) fine = false;
+                if(comb[cnt] == comb[d]) fine = false;
             }
         }
         if(fine) backtrack(cnt+1);
@@ -43,8 +44,8 @@ void backtrack(int cnt)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n >> k;
-    same = vector<vector<int>>(n+1);
-    diff = vector<vector<int>>(n+1);
+    same = vector<set<int>>(n+1);
+    diff = vector<set<int>>(n+1);
     comb = vector<char>(n+1, ' ');
     for(int i=0; i<k; i++)
     {
@@ -53,13 +54,13 @@ int main() {
         cin >> c >> a >> b;
         if(c == 'S')
         {
-            same[a].push_back(b);
-            same[b].push_back(a);
+            same[a].insert(b);
+            same[b].insert(a);
         }
         else
         {
-            diff[a].push_back(b);
-            diff[b].push_back(a);
+            diff[a].insert(b);
+            diff[b].insert(a);
         }
     }
 
