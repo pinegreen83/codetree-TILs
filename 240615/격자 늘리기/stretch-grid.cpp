@@ -18,11 +18,10 @@ int main() {
         string now = "";
         for(int j=0; j<m; j++)
         {
-            now += map[i][j];
-            now += map[i][j];
+            for(int c=0; c<k; c++) now += map[i][j];
         }
         now += '\n';
-        cout << now << now;
+        for(int c=0; c<k; c++) cout << now;
     }
 
     return 0;
