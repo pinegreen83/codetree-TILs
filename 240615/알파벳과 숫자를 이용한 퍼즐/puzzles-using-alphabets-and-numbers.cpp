@@ -5,31 +5,35 @@
 using namespace std;
 
 int n, ans = 0;
-vector<char> exp = {'B', 'E', 'S', 'S', 'I', 'E', 'G', 'O', 'E', 'S', 'M', 'O', 'O'};
+vector<char> alps = {'B', 'E', 'S', 'I', 'G', 'O', 'M'};
+vector<vector<char>> exp = {{'B', 'E', 'S', 'S', 'I', 'E'}, {'G', 'O', 'E', 'S'}, {'M', 'O', 'O'}};
 map<char, vector<int>> alpa;
+map<char, int> comp;
 
-void calc(int cnt, int sum, long cal)
+void calc(int cnt)
 {
-    if(cnt == 6)
+    if(cnt == 7)
     {
-        cal *= sum;
-        sum = 0;
-    }
-    else if(cnt == 10)
-    {
-        cal *= sum;
-        sum = 0;
-    }
-    else if(cnt == 13)
-    {
-        cal *= sum;
-        if(cal % 2 == 0) ans++;
+        for(int i=0; i<exp.size(); i++)
+        {
+            int sum = 0;
+            for(int j=0; j<exp[i].size(); j++)
+            {
+                sum += comp[exp[i][j]];
+            }
+            if(sum % 2 == 0)
+            {
+                ans++;
+                return;
+            }
+        }
         return;
     }
-    vector<int> now = alpa[exp[cnt]];
-    for(int i=0; i<now.size(); i++)
+    vector<int> temp = alpa[alps[cnt]];
+    for(int i=0; i<temp.size(); i++)
     {
-        calc(cnt+1, sum+now[i], cal);
+        comp[alps[cnt]] = temp[i];
+        calc(cnt+1);
     }
 }
 
@@ -51,7 +55,7 @@ int main() {
         else alpa[alp].push_back(now);
     }
 
-    calc(0, 0, 1);
+    calc(0);
     cout << ans;
 
     return 0;
