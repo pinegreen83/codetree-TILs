@@ -12,21 +12,31 @@ map<char, int> comp;
 
 void calc(int cnt)
 {
-    if(cnt == 7)
+    if(cnt == 4)
     {
-        for(int i=0; i<exp.size(); i++)
+        int sum = 0;
+        for(int i=0; i<exp[0].size(); i++) sum += comp[exp[0][i]];
+        if(sum % 2 == 0)
         {
-            int sum = 0;
-            for(int j=0; j<exp[i].size(); j++)
-            {
-                sum += comp[exp[i][j]];
-            }
-            if(sum % 2 == 0)
-            {
-                ans++;
-                return;
-            }
+            ans += alpa[alps[4]].size() * alpa[alps[5]].size() * alpa[alps[6]].size();
+            return;
         }
+    }
+    else if(cnt == 6)
+    {
+        int sum = 0;
+        for(int i=0; i<exp[1].size(); i++) sum += comp[exp[1][i]];
+        if(sum % 2 == 0)
+        {
+            ans += alpa[alps[6]].size();
+            return;
+        }
+    }
+    else if(cnt == 7)
+    {
+        int sum = 0;
+        for(int i=0; i<exp[2].size(); i++) sum += comp[exp[2][i]];
+        if(sum % 2 == 0) ans++;
         return;
     }
     vector<int> temp = alpa[alps[cnt]];
