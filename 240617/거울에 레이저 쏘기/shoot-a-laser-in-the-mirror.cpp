@@ -4,33 +4,36 @@
 using namespace std;
 
 int n, m, ans = 0;
-vector<vector<int>> map, dirs = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}}; // 아래, 왼, 위, 오른
+vector<vector<char>> map;
+vector<string> direc = {"하", "좌", "상", "우"};
+vector<vector<int>> dirs = {{1, 0}, {0, -1}, {-1, 0}, {0, 1}}; // 하, 좌, 상, 우
 
 void light(int x, int y, int dir)
 {
     int cnt = 0;
     x += dirs[dir][0];
     y += dirs[dir][1];
-    while(1 <= x && x <= n && 1 <= y && y <= n)
+    while(1 <= x && x <= n && 1 <= y && y <= m)
     {
-        switch (dir)
+        if(map[x][y] == '/')
         {
-            case 0:
-                if(map[x][y]) dir = 1;
-                else dir = 3;
-                break;
-            case 1:
-                if(map[x][y]) dir = 0;
-                else dir = 2;
-                break;
-            case 2:
-                if(map[x][y]) dir = 3;
-                else dir = 1;
-                break;
-            case 3:
-                if(map[x][y]) dir = 2;
-                else dir = 0;
-                break;
+            switch (dir)
+            {
+                case 0: dir = 1; break;
+                case 1: dir = 0; break;
+                case 2: dir = 3; break;
+                case 3: dir = 2; break;
+            }
+        }
+        else
+        {
+            switch (dir)
+            {
+                case 0: dir = 3; break;
+                case 1: dir = 2; break;
+                case 2: dir = 1; break;
+                case 3: dir = 0; break;
+            }
         }
         cnt++;
         x += dirs[dir][0];
@@ -42,19 +45,13 @@ void light(int x, int y, int dir)
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> n >> m;
-    map = vector<vector<int>>(n+2, vector<int>(m+2));
+    map = vector<vector<char>>(n+2, vector<char>(m+2));
     for(int i=1; i<=n; i++)
     {
-        for(int j=1; j<=m; j++) 
-        {
-            char now;
-            cin >> now;
-            if(now == '/') map[i][j] = 1;
-
-        }
+        for(int j=1; j<=m; j++) cin >> map[i][j];
     }
 
-    vector<vector<int>> move = {{n, 0, 1}, {m, 1, 0}, {n, 0, -1}, {m, -1, 0}};
+    vector<vector<int>> move = {{m, 0, 1}, {n, 1, 0}, {m, 0, -1}, {n, -1, 0}};
     int startx = 0, starty = 0;
     for(int t=0; t<4; t++)
     {
@@ -62,7 +59,7 @@ int main() {
         {
             startx += move[t][1];
             starty += move[t][2];
-            light(startx, starty, 0);
+            light(startx, starty, t);
         }
         startx += move[t][1];
         starty += move[t][2];
