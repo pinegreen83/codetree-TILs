@@ -18,6 +18,10 @@ void backtrack(int cnt, int r1, int c1, int r2, int c2)
         if(r1 == r2 && c1 == c2) ans++;
         return;
     }
+    else
+    {
+        if(r1 == r2 && c1 == c2) return;
+    }
     for(int i=0; i<4; i++)
     {
         int dirr1 = r1 + dirs[i][0];
