@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -7,7 +8,7 @@ int n, ans = 0;
 vector<vector<int>> map;
 vector<bool> visited;
 
-void backtrack(int cnt, int x, int y)
+void backtrack(int cnt, int x, int y, int dirx, int diry)
 {
     if(cnt == n)
     {
@@ -20,9 +21,16 @@ void backtrack(int cnt, int x, int y)
         {
             if(x == map[i][0] || y == map[i][1]) 
             {
-                visited[i] = true;
-                backtrack(cnt+1, map[i][0], map[i][1]);
-                visited[i] = false;
+                int dx = x - map[i][0];
+                int dy = y - map[i][1];
+                dx = dx/abs(dx);
+                dy = dy/abs(dy);
+                if(dx != dirx || dy != diry)
+                {
+                    visited[i] = true;
+                    backtrack(cnt+1, map[i][0], map[i][1], dx, dy);
+                    visited[i] = false;
+                }
             }
         }
     }
@@ -38,7 +46,7 @@ int main() {
         cin >> map[i][0] >> map[i][1];
     }
     visited = vector<bool>(n);
-    backtrack(0, 0, 0);
+    backtrack(0, 0, 0, 0, 0);
     cout << ans;
 
     return 0;
