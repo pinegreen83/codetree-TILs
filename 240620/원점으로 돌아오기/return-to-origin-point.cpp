@@ -12,7 +12,14 @@ void backtrack(int cnt, int x, int y, int dirx, int diry)
 {
     if(cnt == n)
     {
-        if(x == 0 || y == 0) ans++;
+        if(x == 0 || y == 0) 
+        {
+            int dx = 0 - x;
+            int dy = 0 - y;
+            dx = dx != 0 ? dx/abs(dx) : 0;
+            dy = dy != 0 ? dy/abs(dy) : 0;
+            if(dx != dirx || dy != diry) ans++;
+        }
         return;
     }
     for(int i=0; i<n; i++)
@@ -21,10 +28,10 @@ void backtrack(int cnt, int x, int y, int dirx, int diry)
         {
             if(x == map[i][0] || y == map[i][1]) 
             {
-                int dx = x - map[i][0];
-                int dy = y - map[i][1];
-                dx = dx/abs(dx);
-                dy = dy/abs(dy);
+                int dx = map[i][0] - x;
+                int dy = map[i][1] - y;
+                dx = dx != 0 ? dx/abs(dx) : 0;
+                dy = dy != 0 ? dy/abs(dy) : 0;
                 if(dx != dirx || dy != diry)
                 {
                     visited[i] = true;
