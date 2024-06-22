@@ -1,14 +1,32 @@
 #include <iostream>
+#include <queue>
 
 using namespace std;
 
 int n, ans = 0;
-int map[101][101], dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-bool visited[101][101];
+int map[102][102], dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+bool visited[102][102];
+bool external[102][102];
 
 bool isin(int x, int y)
 {
-    return 1 <= x && x <= 100 && 1 <= y && y <= 100;
+    return 0 <= x && x <= 101 && 0 <= y && y <= 101;
+}
+
+void findOutside(int x, int y)
+{
+    external[x][y] = true;
+
+    for(int d=0; d<4; d++)
+    {
+        int dirx = x + dirs[d][0];
+        int diry = y + dirs[d][1];
+
+        if(isin(dirx, diry) && !external[dirx][diry] && map[dirx][diry] == 0)
+        {
+            findOutside(dirx, diry);
+        }
+    }
 }
 
 void DFS(int x, int y)
@@ -17,20 +35,15 @@ void DFS(int x, int y)
     {
         int dirx = x + dirs[d][0];
         int diry = y + dirs[d][1];
-        if(map[dirx][diry] == 0)
+        
+        // 인접한 방향에 외부 빈 공간이 있는 경우, 둘레에 해당
+        if(!isin(dirx, diry) || (map[dirx][diry] == 0 && external[dirx][diry]))
         {
-            for(int i=0; i<4; i++)
-            {
-                int ddx = dirx + dirs[i][0];
-                int ddy = diry + dirs[i][1];
-                if(isin(ddx, ddy) && map[ddx][ddy] == 0) 
-                {
-                    ans++;
-                    break;
-                }
-            }
+            ans++;
         }
-        if(!visited[dirx][diry] && map[dirx][diry] == 1)
+        
+        // 인접한 방향으로 이동할 수 있는 경우 DFS 호출
+        if(isin(dirx, diry) && !visited[dirx][diry] && map[dirx][diry] == 1)
         {
             visited[dirx][diry] = true;
             DFS(dirx, diry);
@@ -48,6 +61,8 @@ int main() {
         cin >> r >> c;
         map[r][c] = 1;
     }
+
+    findOutside(0, 0);
 
     for(int i=1; i<=100; i++)
     {
