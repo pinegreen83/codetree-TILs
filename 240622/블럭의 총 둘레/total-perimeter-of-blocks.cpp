@@ -2,9 +2,14 @@
 
 using namespace std;
 
-int n, maxx = 0, maxy = 0, ans = 0;
+int n, ans = 0;
 int map[101][101], dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 bool visited[101][101];
+
+bool isin(int x, int y)
+{
+    return 1 <= x && x <= 100 && 1 <= y && y <= 100;
+}
 
 void DFS(int x, int y)
 {
@@ -12,11 +17,22 @@ void DFS(int x, int y)
     {
         int dirx = x + dirs[d][0];
         int diry = y + dirs[d][1];
+        if(map[dirx][diry] == 0)
+        {
+            for(int i=0; i<4; i++)
+            {
+                int ddx = dirx + dirs[i][0];
+                int ddy = diry + dirs[i][1];
+                if(isin(ddx, ddy) && map[ddx][ddy] == 0) 
+                {
+                    ans++;
+                    break;
+                }
+            }
+        }
         if(!visited[dirx][diry] && map[dirx][diry] == 1)
         {
             visited[dirx][diry] = true;
-            maxx = max(maxx, dirx);
-            maxy = max(maxy, diry);
             DFS(dirx, diry);
         }
     }
@@ -40,10 +56,7 @@ int main() {
             if(!visited[i][j] && map[i][j] == 1)
             {
                 visited[i][j] = true;
-                maxx = 0;
-                maxy = 0;
                 DFS(i, j);
-                ans += (maxx - i + 1) * 2 + (maxy - j + 1) * 2;
             }
         }
     }
