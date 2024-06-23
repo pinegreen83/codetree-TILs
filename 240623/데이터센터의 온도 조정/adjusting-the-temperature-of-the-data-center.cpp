@@ -23,15 +23,14 @@ int main() {
     {
         int ta = -pq.top().first;
         int tb = pq.top().second;
-        cnt += tb;
-        if(tb == 1)
-        {
-            int right = n - cnt - left;
-            int work = (c * left) + (g * cnt) + (h * right);
-            ans = max(ans, work);
-        }
-        else left += 1;
         pq.pop();
+
+        cnt += tb;
+        if(tb == -1) left += 1;
+
+        int right = n - cnt - left;
+        int work = (h * left) + (g * cnt) + (c * right);
+        ans = max(ans, work);
     }
     cout << ans;
 
