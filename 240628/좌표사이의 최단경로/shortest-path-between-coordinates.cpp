@@ -3,32 +3,44 @@
 
 using namespace std;
 
-int a, b, diff, dir, ans = 0;
-int dirs[4][2] = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
+int a, b;
+int dp[31][31];
 
-void dfs(int cnt, int x, int y)
+void clear()
 {
-    if(y > x) return;
-    if(cnt == diff)
+    for(int i=a; i<=b; i++)
     {
-        if(x == b && y == b) ans++;
-        return;
-    }
-    for(int i=0; i<2; i++)
-    {
-        dfs(cnt+1, x+dirs[dir+i][0], y+dirs[dir+i][1]);
+        for(int j=a; j<=b; j++) dp[i][j] = 0;
     }
 }
 
 int main() {
     // 여기에 코드를 작성해주세요.
     cin >> a >> b;
-    if(a-b > 0) dir = 2;
-    else dir = 0;
+    if(a > b) 
+    {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
 
-    diff = abs(a-b) * 2;
-    dfs(0, a, a);
-    cout << ans;
+    clear();
+
+    for(int i=a; i<=b; i++)
+    {
+        dp[a][i] = 1;
+    }
+
+    for(int y=a; y<=b; y++)
+    {
+        for(int x=a; x<=b; x++)
+        {
+            dp[x][y+1] += dp[x][y];
+            if(y <= x) dp[x+1][y] += dp[x][y];
+        }
+    }
+    cout << dp[b][b];
+
 
     return 0;
 }
