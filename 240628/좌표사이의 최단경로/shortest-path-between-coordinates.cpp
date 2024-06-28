@@ -4,7 +4,7 @@
 using namespace std;
 
 int a, b;
-int dp[31][31];
+long long dp[31][31];
 
 void clear()
 {
@@ -31,9 +31,9 @@ int main() {
         dp[a][i] = 1;
     }
 
-    for(int y=a; y<=b; y++)
+    for(int x=a; x<=b; x++)
     {
-        for(int x=a; x<=b; x++)
+        for(int y=a; y<=b; y++)
         {
             dp[x][y+1] += dp[x][y];
             if(y <= x) dp[x+1][y] += dp[x][y];
