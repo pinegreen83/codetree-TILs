@@ -1,14 +1,17 @@
 #include <iostream>
+#include <cmath>
 #include <set>
 
 using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    bool check[1001];
+    bool check[1001] = {false};
+
     set<int> primes;
-    for(int i=2; i*i<=1000; i++)
+    for(int i=2; i<sqrt(1000); i++)
     {
+        if(check[i]) continue;
         for(int j=i+i; j<=1000; j+=i)
         {
             check[j] = true;
