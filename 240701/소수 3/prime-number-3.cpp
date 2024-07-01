@@ -9,7 +9,7 @@ int main() {
     bool check[1001] = {false};
 
     set<int> primes;
-    for(int i=2; i*i<=sqrt(1000); i++)
+    for(int i=2; i*i<sqrt(1000); i++)
     {
         if(check[i]) continue;
         for(int j=i+i; j<=1000; j+=i)
