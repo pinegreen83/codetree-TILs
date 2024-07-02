@@ -19,10 +19,6 @@ int main() {
 
     sort(trains.begin(), trains.end());
 
-    for(auto t : trains)
-    {
-    }
-
     int before_spd = trains[n-1].second, ans = 0;
     for(int i=n-2; i>=0; i--)
     {
