@@ -1,40 +1,55 @@
 #include <iostream>
-#include <set>
+#include <vector>
+#include <algorithm>
 
 #define MAX_NUM 200
 
 using namespace std;
 
-int nums[MAX_NUM];
-
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n;
+    int n, idx = 0;
     cin >> n;
-
-    for(int i=0; i<n; i++) cin >> nums[i];
-
-    int now;
-    if(nums[0] > nums[1]) now = 0;
-    else
+    
+    vector<int> nums = {0};
+    vector<int> nums2 = {0};
+    for(int i=0; i<n; i++)
     {
-        for(int i=0; i<n-1; i++)
+        int a;
+        cin >> a;
+        if(nums[nums.size()-1] != a) 
         {
-            if(nums[i] > nums[i+1]) 
+            nums.push_back(a);
+            nums2.push_back(a);
+        }
+    }
+    nums.push_back(1'000'001);
+    nums2.push_back(1'000'001);
+
+    sort(nums2.begin(), nums2.end());
+
+    bool same = true;
+    vector<int> ans;
+    for(int i=1; i<=nums.size()-1; i++)
+    {
+        if(same)
+        {
+            if(nums[i] != nums2[i])
             {
-                now = i+1;
+                ans.push_back(i);
+                same = false;
+            }
+        }
+        else
+        {
+            if(nums[i] == nums2[i])
+            {
+                ans.push_back(i);
                 break;
             }
         }
     }
-
-    set<int> numset;
-
-    for(int i=0; i<now; i++)
-    {
-        if(nums[i] > nums[now]) numset.insert(nums[i]);
-    }
-    cout << numset.size();
+    cout << ans[1] - ans[0] - 1;
 
     return 0;
 }
