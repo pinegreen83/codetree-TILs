@@ -5,16 +5,13 @@ using namespace std;
 
 int nums[3];
 set<int> odd, even;
-bool visited[3];
+bool visited[3], isone;
 
 void ints(int cnt, int mul)
 {
     if(cnt <= 3)
     {
-        if(mul % 2 == 0)
-        {
-            even.insert(mul);
-        }
+        if(mul % 2 == 0) even.insert(mul);
         else odd.insert(mul);
         if(cnt == 3) return;
     }
@@ -31,10 +28,13 @@ void ints(int cnt, int mul)
 
 int main() {
     // 여기에 코드를 작성해주세요.
+    isone = false;
+
     for(int i=0; i<3; i++)
     {
         cin >> nums[i];
         visited[i] = false;
+        if(nums[i] == 1) isone = true;
     }
 
     ints(0, 1);
@@ -44,7 +44,7 @@ int main() {
     set<int>::iterator iter;
     for(iter=odd.begin(); iter!=odd.end(); iter++) ans = max(ans, *iter);
 
-    if(odd.size() == 1 && odd.find(1) != odd.end()) for(iter=even.begin(); iter!=even.end(); iter++) ans = max(ans, *iter);
+    if(!isone) for(iter=even.begin(); iter!=even.end(); iter++) ans = max(ans, *iter);
     cout << ans;
 
     return 0;
