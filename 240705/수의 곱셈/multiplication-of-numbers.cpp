@@ -43,9 +43,9 @@ int main() {
     set<int>::iterator iter;
     for(iter=odd.begin(); iter!=odd.end(); iter++) ans = max(ans, *iter);
 
-    if(ans == 0)
+    if(odd.size() == 1)
     {
-        for(iter=even.begin(); iter!=even.end(); iter++) cout << *iter << " ";
+        for(iter=even.begin(); iter!=even.end(); iter++) ans = max(ans, *iter);
     }
     cout << ans;
 
