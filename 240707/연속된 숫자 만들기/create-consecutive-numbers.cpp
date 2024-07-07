@@ -16,7 +16,7 @@ int main() {
 
     int maxdiff = max(diffab, diffbc);
     int mindiff = min(diffab, diffbc);
-    if(0 == mindiff || mindiff > 2) mindiff = 2;
+    if(mindiff > 2) mindiff = 2;
     cout << mindiff << '\n' << maxdiff;
 
     return 0;
