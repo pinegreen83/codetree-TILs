@@ -45,7 +45,7 @@ int main() {
     }
 
     if(!use) cout << -1;
-    else cout << (ans == 0 ? -1 : ans);
+    else cout << ans;
 
     return 0;
 }
