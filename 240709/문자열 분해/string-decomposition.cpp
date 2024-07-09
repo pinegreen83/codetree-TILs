@@ -33,7 +33,10 @@ int main() {
         if(cnt == 0) finish = false;
         else ans++;
     }
-    cout << (ans == 0 ? -1 : ans);
+    bool use = true;
+    for(int i=0; i<str.size(); i++) use = check[i];
+    if(!use) cout << -1;
+    else cout << (ans == 0 ? -1 : ans);
 
     return 0;
 }
