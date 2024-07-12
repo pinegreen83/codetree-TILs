@@ -18,17 +18,10 @@ int main() {
     {
         last--;
         ans = nums[last];
-        for(int i=0; i<n/2; i++)
-        {
-            ans = max(ans, nums[i] + nums[last-i]);
-        }
     }
-    else
+    for(int i=0; i<n/2; i++)
     {
-        for(int i=0; i<n/2; i++)
-        {
-            ans = max(ans, nums[i] + nums[last-i]);
-        }
+        ans = max(ans, nums[i] + nums[last-i]);
     }
     cout << ans;
 
