@@ -14,10 +14,10 @@ int main() {
 
     sort(nums.begin(), nums.end());
 
-    float ans = nums[n-1];
+    double ans = nums[n-1];
     for(int i=0; i<n-1; i++)
     {
-        ans += (float) nums[i] / 2;
+        ans += (double) nums[i] / 2;
     }
     printf("%.1f", ans);
 
