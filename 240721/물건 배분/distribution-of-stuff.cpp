@@ -17,7 +17,6 @@ int main() {
     vector<int> boxes;
     for(int i=0; i<n; i++)
     {
-        cout << i << "\n";
         bool inbox = false;
         for(int j=0; j<boxes.size(); j++)
         {
@@ -29,8 +28,6 @@ int main() {
             }
         }
         if(!inbox) boxes.push_back(nums[i]);
-        for(auto b : boxes) cout << b << " ";
-        cout << "\n";
     }
 
     cout << boxes.size();
