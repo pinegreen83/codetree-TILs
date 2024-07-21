@@ -1,36 +1,27 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, m;
+    int n, m, si = 0;
     cin >> n >> m;
 
-    vector<int> nums(n);
-    for(int i=0; i<n; i++) cin >> nums[i];
-
-    sort(nums.rbegin(), nums.rend());
-
-    vector<int> boxes;
-    for(int i=0; i<n; i++)
+    vector<int> nums(1);
+    cin >> nums[0];
+    for(int i=1; i<n; i++) 
     {
-        bool inbox = false;
-        for(int j=0; j<boxes.size(); j++)
+        int now;
+        cin >> now;
+        if(nums[si] + now <= m) nums[si] += now;
+        else 
         {
-            if(boxes[j]+nums[i] < m)
-            {
-                boxes[j] += nums[i];
-                inbox = true;
-                break;
-            }
+            nums.push_back(now);
+            si++;
         }
-        if(!inbox) boxes.push_back(nums[i]);
     }
-
-    cout << boxes.size();
+    cout << si+1;
 
     return 0;
 }
