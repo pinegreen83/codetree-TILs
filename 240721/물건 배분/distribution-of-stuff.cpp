@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,36 +10,30 @@ int main() {
     cin >> n >> m;
 
     vector<int> nums(n);
-    vector<bool> check(n);
-
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int ans = 0, now = m, cnt = 0;
-    while(cnt < n)
+    sort(nums.rbegin(), nums.rend());
+
+    vector<int> boxes;
+    for(int i=0; i<n; i++)
     {
+        cout << i << "\n";
         bool inbox = false;
-        for(int i=0; i<n; i++)
+        for(int j=0; j<boxes.size(); j++)
         {
-            if(!check[i])
+            if(boxes[j]+nums[i] < m)
             {
-                if(now >= 0 && now >= nums[i])
-                {
-                    now -= nums[i];
-                    check[i] = true;
-                    inbox = true;
-                    break;
-                }
+                boxes[j] += nums[i];
+                inbox = true;
+                break;
             }
         }
-        if(!inbox)
-        {
-            now = m;
-            ans++;
-        }
-        else cnt++;
+        if(!inbox) boxes.push_back(nums[i]);
+        for(auto b : boxes) cout << b << " ";
+        cout << "\n";
     }
-    if(now < m) ans++;
-    cout << ans;
+
+    cout << boxes.size();
 
     return 0;
 }
