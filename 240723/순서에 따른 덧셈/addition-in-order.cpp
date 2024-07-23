@@ -13,7 +13,7 @@ int main() {
 
     sort(nums.rbegin(), nums.rend());
 
-    int ans = 0;
+    long long ans = 0;
     for(int i=0; i<n; i++)
     {
         int now = nums[i] - i;
