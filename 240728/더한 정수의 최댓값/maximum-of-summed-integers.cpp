@@ -9,15 +9,15 @@ int main() {
     cin >> n;
     
     long long sum = 0;
-    vector<int> nums(n);
-    for(int i=0; i<n; i++) 
+    vector<int> nums(n+1);
+    for(int i=1; i<=n; i++) 
     {
         cin >> nums[i];
         sum += nums[i];
     }
 
-    int comp1 = nums[0] + nums[1];
-    int comp2 = nums[n-2] + nums[n-1];
+    int comp1 = nums[1] + nums[2];
+    int comp2 = nums[n-1] + nums[n];
 
     if(comp1 > comp2) cout << (sum - comp2) * 2;
     else cout << (sum - comp1) * 2;
