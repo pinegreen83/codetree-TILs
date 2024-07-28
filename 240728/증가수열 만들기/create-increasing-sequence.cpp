@@ -12,12 +12,16 @@ int main() {
     for(int i=0; i<n; i++) cin >> nums[i];
 
     int ans = 0;
-    for(int i=0; i<n-1; i++)
+    for(int i=1; i<n; i++)
     {
-        if(nums[i] > nums[i+1])
+        if(nums[i] < nums[i-1])
         {
-            ans += nums[i] - (nums[i+1] - 1);
-            nums[i] = nums[i+1] - 1;
+            for(int j=i-1; j>=0; j--)
+            {
+                if(nums[j] < nums[j+1]) continue;
+                ans += nums[j] - (nums[i] - i + j);
+                nums[j] = nums[i] - i + j;
+            }
         }
     }
     cout << ans;
