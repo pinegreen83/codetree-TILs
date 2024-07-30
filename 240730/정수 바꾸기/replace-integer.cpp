@@ -1,28 +1,29 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
-
-int b, ans = 10000000;
-
-void dfs(int now, int cnt)
-{
-    if(now >= b)
-    {
-        if(now == b) ans = min(ans, cnt);
-        return;
-    }
-    int nowOne = now * 10 + 1;
-    int nowTwo = now * 2;
-    dfs(nowOne, cnt+1);
-    dfs(nowTwo, cnt+1);
-}
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int a;
+    int a, b;
     cin >> a >> b;
 
-    dfs(a, 0);
-    cout << ans;
+    int cnt = 0;
+    while(b > a)
+    {
+        cnt++;
+        if(b % 2 == 0)
+        {
+            b /= 2;
+        }
+        else if(b % 10 == 1)
+        {
+            b /= 10;
+        }
+        else break;
+    }
+    if(b == a) cout << cnt;
+    else cout << -1;
 
     return 0;
 }
