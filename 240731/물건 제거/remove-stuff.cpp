@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,11 +10,13 @@ int main() {
     cin >> n;
     vector<int> machines(n);
     for(int i=0; i<n; i++) cin >> machines[i];
+    sort(machines.begin(), machines.end());
 
     int k;
     cin >> k;
     vector<int> products(k);
     for(int i=0; i<k; i++) cin >> products[i];
+    sort(products.begin(), products.end());
 
     int time = 0, totalCnt = 0;
     vector<bool> visited(k);
