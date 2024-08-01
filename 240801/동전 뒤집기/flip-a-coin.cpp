@@ -25,28 +25,17 @@ int main() {
         for(int j=1; j<=m; j++) cin >> map[i][j];
     }
 
-    int ans = 0, N = n, M = m;
-    while(N > 0 || M > 0)
+    int ans = 0;
+    for(int i=n; i>=1; i--)
     {
-        for(int i=N; i>=1; i--)
+        for(int j=m; j>=1; j--)
         {
-            if(map[i][M] == 1) 
+            if(map[i][j] == 1) 
             {
                 ans++;
-                flip(i, M);
+                flip(i, j);
             }
         }
-
-        for(int i=M; i>=1; i--)
-        {
-            if(map[N][i] == 1) 
-            {
-                ans++;
-                flip(N, i);
-            }
-        }
-        N--;
-        M--;
     }
     cout << ans;
 
