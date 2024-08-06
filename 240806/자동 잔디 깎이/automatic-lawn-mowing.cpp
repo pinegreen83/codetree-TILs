@@ -46,7 +46,7 @@ int main() {
             else moves[temp] = time;
         }
     }
-    cout << ans;
+    cout << (ans == 100000000 ? -1 : ans);
 
     return 0;
 }
