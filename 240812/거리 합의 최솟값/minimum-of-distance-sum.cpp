@@ -17,7 +17,7 @@ int main() {
 
     int midx = xs[n/2], midy = ys[n/2];
 
-    int sumx = 0, sumy = 0;
+    long long sumx = 0, sumy = 0;
     for(int i=0; i<n; i++)
     {
         sumx += abs(xs[i] - midx);
