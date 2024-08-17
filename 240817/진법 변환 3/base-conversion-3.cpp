@@ -7,19 +7,12 @@ int main() {
     string str;
     cin >> str;
 
-    int num = 0, now = 1;
-    for(int i=str.size()-1; i>=0; i--) {
-        num += (str[i] - '0') * now;
-        now *= 8;
+    string first[8] = {"0", "1", "10", "11", "100", "101", "110", "111"};
+    string notFirst[8] = {"000", "001", "010", "011", "100", "101", "110", "111"};
+    for(int i=0; i<str.size(); i++) {
+        if(i == 0) cout << first[str[i]-'0'];
+        else cout << notFirst[str[i]-'0'];
     }
-
-    string temp = "";
-    while(num > 0) {
-        temp += (num % 2) + '0';
-        num /= 2;
-    }
-
-    for(int i=temp.size()-1; i>=0; i--) cout << temp[i];
 
     return 0;
 }
