@@ -7,7 +7,7 @@ int main() {
     int n;
     cin >> n;
 
-    int dp[101];
+    long long dp[101];
     dp[1] = 1;
     dp[2] = 1;
     dp[3] = 1;
