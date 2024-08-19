@@ -16,6 +16,10 @@ int main() {
             stack.push_back(str[i]);
         }
         else if(str[i] == ')') {
+            if(stack.size() == 0) {
+                ans = 0;
+                break;
+            }
             if(stack.back() == '(') stack.pop_back();
             else {
                 ans = 0;
@@ -23,6 +27,10 @@ int main() {
             }
         }
         else if(str[i] == ']') {
+            if(stack.size() == 0) {
+                ans = 0;
+                break;
+            }
             if(stack.back() == '[') stack.pop_back();
             else {
                 ans = 0;
