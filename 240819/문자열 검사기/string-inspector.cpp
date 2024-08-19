@@ -18,14 +18,14 @@ int main() {
         else if(str[i] == ')') {
             if(stack.back() == '(') stack.pop_back();
             else {
-                ans = 1;
+                ans = 0;
                 break;
             }
         }
         else if(str[i] == ']') {
             if(stack.back() == '[') stack.pop_back();
             else {
-                ans = 1;
+                ans = 0;
                 break;
             }
         }
