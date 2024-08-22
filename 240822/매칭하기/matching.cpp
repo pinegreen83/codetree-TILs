@@ -15,9 +15,9 @@ int main() {
 
         for(int j=0; j<str.size(); j++) {
             if(stack.empty() || stack.back() != str[j]) {
-                stack.push_back(str[i]);
+                stack.push_back(str[j]);
             }
-            else if(stack.back() == str[i]) {
+            else if(stack.back() == str[j]) {
                 stack.pop_back();
             }
         }
