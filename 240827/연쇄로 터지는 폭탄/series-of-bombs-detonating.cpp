@@ -30,7 +30,7 @@ int main() {
                     else left = false;
                 }
             }
-            else if(right) {
+            if(right) {
                 if(i + idx >= n) right = false;
                 else {
                     if(nums[i+idx] <= nums[i+idx-1]+idx) {
@@ -39,7 +39,7 @@ int main() {
                     else right = false;
                 }
             }
-            else if(!left && !right) break;
+            if(!left && !right) break;
         }
         ans = max(ans, cnt);
     }
