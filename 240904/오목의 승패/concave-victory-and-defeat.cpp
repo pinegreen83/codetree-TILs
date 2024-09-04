@@ -14,7 +14,6 @@ void dfs(int dir, int cnt, int x, int y, int type) {
     int diry = y + dirs[dir][1];
 
     if(isin(dirx, diry) && !visited[dirx][diry] && map[dirx][diry] == type) {
-        visited[dirx][diry] = true;
         dfs(dir, cnt+1, dirx, diry, type);
     }
     else {
