@@ -2,6 +2,7 @@
 using namespace std;
 
 int map[20][20], dirs[3][2] = {{-1, 1}, {0, 1}, {1, 1}};
+bool visited[20][20] = {};
 
 bool isin(int x, int y) {
     return 1 <= x && x <= 19 && 1 <= y && y <= 19;
@@ -9,7 +10,6 @@ bool isin(int x, int y) {
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    
     for(int i=1; i<=19; i++) {
         for(int j=1; j<=19; j++) cin >> map[i][j];
     }
@@ -20,7 +20,8 @@ int main() {
         if(find) break;
         for(int j=1; j<=19; j++) {
             if(find) break;
-            if(map[i][j] != 0) {
+            if(map[i][j] != 0 && !visited[i][j]) {
+                visited[i][j] = true;
                 for(int d=0; d<3; d++) {
                     dirx = i + dirs[d][0];
                     diry = j + dirs[d][1];
@@ -28,6 +29,7 @@ int main() {
 
                     while(isin(dirx, diry) && map[i][j] == map[dirx][diry]) {
                         cnt++;
+                        visited[dirx][diry] = true;
                         dirx += dirs[d][0];
                         diry += dirs[d][1];
                     }
