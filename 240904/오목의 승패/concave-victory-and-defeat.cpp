@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int map[20][20], dirs[3][2] = {{-1, 1}, {0, 1}, {1, 1}};
+int map[20][20], dirs[4][2] = {{-1, 1}, {0, 1}, {1, 0}, {1, 1}};
 bool visited[20][20] = {};
 
 bool isin(int x, int y) {
@@ -20,9 +20,8 @@ int main() {
         if(find) break;
         for(int j=1; j<=19; j++) {
             if(find) break;
-            if(map[i][j] != 0 && !visited[i][j]) {
-                visited[i][j] = true;
-                for(int d=0; d<3; d++) {
+            if(map[i][j] != 0) {
+                for(int d=0; d<4; d++) {
                     dirx = i + dirs[d][0];
                     diry = j + dirs[d][1];
                     cnt = 1;
@@ -33,6 +32,15 @@ int main() {
                         dirx += dirs[d][0];
                         diry += dirs[d][1];
                     }
+
+                    dirx = i - dirs[d][0];
+                    diry = j - dirs[d][1];
+                    while(isin(dirx, diry) && map[i][j] == map[dirx][diry]) {
+                        cnt++;
+                        dirx -= dirs[d][0];
+                        diry -= dirs[d][1];
+                    }
+
                     if(cnt == 5) {
                         find = true;
                         ans = map[i][j];
