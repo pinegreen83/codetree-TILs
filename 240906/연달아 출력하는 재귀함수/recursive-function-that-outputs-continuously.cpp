@@ -1,8 +1,10 @@
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 void recur(int now) {
-    if(now == 1) {
+    if(now < 3) {
         cout << now << " ";
         return;
     }
