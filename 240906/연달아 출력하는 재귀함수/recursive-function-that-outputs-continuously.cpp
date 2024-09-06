@@ -8,7 +8,6 @@ void recur(int now) {
     }
     recur(now / 3);
     cout << now << " ";
-    return;
 }
 
 int main() {
