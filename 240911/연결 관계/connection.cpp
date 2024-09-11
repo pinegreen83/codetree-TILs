@@ -4,6 +4,25 @@
 
 using namespace std;
 
+bool dfs(const vector<vector<int>>& edges, vector<bool>& visited, int now, int dep) {
+    if(dep == 4) {
+        return true;
+    }
+
+    visited[now] = true;
+
+    for(int next : edges[now]) {
+        if(!visited[next]) {
+            if(dfs(edges, visited, next, dep+1)) {
+                return true;
+            }
+        }
+    }
+
+    visited[now] = false;
+    return false;
+}
+
 int main() {
     // 여기에 코드를 작성해주세요.
     int n, m, s, e;
@@ -17,33 +36,12 @@ int main() {
         edges[e].push_back(s);
     }
 
-    int ans = 0, cnt, now;
-    bool check = false;
+    int ans = 0;
     for(int i=0; i<n; i++) {
-        if(check) {
+        vector<bool> visited(n, false);
+        if(dfs(edges, visited, i, 0)) {
             ans = 1;
             break;
-        }
-        bool visited[n] = {};
-        queue<pair<int, int>> q;
-        q.push({i, 1});
-        visited[i] = true;
-        while(!q.empty()) {
-            now = q.front().first;
-            cnt = q.front().second;
-            q.pop();
-
-            if(cnt == 5) {
-                check = true;
-                break;
-            }
-
-            for(int j=0; j<edges[now].size(); j++) {
-                if(!visited[edges[now][j]]) {
-                    visited[edges[now][j]]  = true;
-                    q.push({edges[now][j], cnt+1});
-                }
-            }
         }
     }
     cout << ans;
