@@ -13,25 +13,8 @@ enum Alp {
 
 using namespace std;
 
-int n, ans = 0;
-vector<int> selected(7);
-vector<vector<int>> nums(7);
-
-void Backtrack(int cnt) {
-    if(cnt == 7) {
-        int a = selected[Alp::B] + selected[Alp::E]*2 + selected[Alp::S]*2 + selected[Alp::I];
-        int b = selected[Alp::E] + selected[Alp::S] + selected[Alp::G] + selected[Alp::O];
-        int c = selected[Alp::O]*2 + selected[Alp::M];
-
-        if(a % 2 == 0 || b % 2 == 0 || c % 2 == 0) ans++;
-        return;
-    }
-
-    for(int i=0; i<nums[cnt].size(); i++) {
-        selected[cnt] = nums[cnt][i];
-        Backtrack(cnt+1);
-    }
-}
+int n;
+vector<int> odd(7, 0), even(7, 0);
 
 int main() {
     // 여기에 코드를 작성해주세요.
@@ -42,32 +25,64 @@ int main() {
     for(int i=0; i<n; i++) {
         cin >> now >> num;
 
+        int idx;
         switch(now) {
             case 'B':
-                nums[Alp::B].push_back(num);
+                idx = Alp::B;
                 break;
             case 'E':
-                nums[Alp::E].push_back(num);
+                idx = Alp::E;
                 break;
             case 'S':
-                nums[Alp::S].push_back(num);
+                idx = Alp::S;
                 break;
             case 'I':
-                nums[Alp::I].push_back(num);
+                idx = Alp::I;
                 break;
             case 'G':
-                nums[Alp::G].push_back(num);
+                idx = Alp::G;
                 break;
             case 'O':
-                nums[Alp::O].push_back(num);
+                idx = Alp::O;
                 break;
             case 'M':
-                nums[Alp::M].push_back(num);
+                idx = Alp::M;
                 break;
+        }
+
+        if(num % 2 == 0) even[idx]++;
+        else odd[idx]++;
+    }
+
+    long long ans = 0;
+    for(int i=0; i<(1 << 7); i++) {
+        int B_type = (i >> Alp::B) & 1;
+        int E_type = (i >> Alp::E) & 1;
+        int S_type = (i >> Alp::S) & 1;
+        int I_type = (i >> Alp::I) & 1;
+        int G_type = (i >> Alp::G) & 1;
+        int O_type = (i >> Alp::O) & 1;
+        int M_type = (i >> Alp::M) & 1;
+
+        int a = (B_type + I_type) % 2;
+        int b = (G_type + O_type + E_type + S_type) % 2;
+        int c = M_type;
+
+        if(a == 0 || b == 0 || c == 0) {
+            long long cnt = 1;
+
+            cnt *= (B_type == 0) ? even[Alp::B] : odd[Alp::B];
+            cnt *= (E_type == 0) ? even[Alp::E] : odd[Alp::E];
+            cnt *= (S_type == 0) ? even[Alp::S] : odd[Alp::S];
+            cnt *= (I_type == 0) ? even[Alp::I] : odd[Alp::I];
+            cnt *= (G_type == 0) ? even[Alp::G] : odd[Alp::G];
+            cnt *= (O_type == 0) ? even[Alp::O] : odd[Alp::O];
+            cnt *= (M_type == 0) ? even[Alp::M] : odd[Alp::M];
+
+            ans += cnt;
         }
     }
 
-    Backtrack(0);
     cout << ans;
 
     return 0;
