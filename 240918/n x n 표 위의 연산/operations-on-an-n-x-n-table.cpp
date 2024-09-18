@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int n, maxAns = 0, minAns = 100000000;
+int n, maxAns = -10000000, minAns = 100000000;
 int dirs[2][2] = {{1, 0}, {0, 1}};
 vector<vector<char>> map;
 
