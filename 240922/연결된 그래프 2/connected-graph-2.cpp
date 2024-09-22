@@ -24,7 +24,6 @@ void DFS(int cnt, int now) {
         if(!visited[next]) {
             visited[next] = true;
             DFS(cnt+1, next);
-            visited[next] = false;
         }
     }
 }
