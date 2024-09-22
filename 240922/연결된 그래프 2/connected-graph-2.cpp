@@ -3,22 +3,30 @@
 
 using namespace std;
 
+bool check;
 int n, m, dist = 0;
 vector<int> ans;
 vector<bool> visited;
 vector<vector<int>> map;
 
-int DFS(int cnt, int now) {
+void DFS(int cnt, int now) {
+    if(cnt >= dist) {
+        check = true;
+        if(cnt > dist) {
+            ans.clear();
+            dist = cnt;
+        }
+    }
+
     for(int i=0; i<map[now].size(); i++) {
         int next = map[now][i];
 
         if(!visited[next]) {
             visited[next] = true;
-            return DFS(cnt+1, next);
+            DFS(cnt+1, next);
+            visited[next] = false;
         }
     }
-    
-    return cnt;
 }
 
 int main() {
@@ -36,14 +44,12 @@ int main() {
     for(int i=1; i<=n; i++) {
         visited = vector<bool>(n+1, false);
         visited[i] = true;
-        
-        int now = DFS(0, i);
-        if(now > dist) {
-            dist = now;
-            ans.clear();
+
+        check = false;
+        DFS(0, i);
+        if(check) {
             ans.push_back(i);
         }
-        else if(now == dist) ans.push_back(i);
     }
 
     for(auto& a : ans) cout << a << " ";
