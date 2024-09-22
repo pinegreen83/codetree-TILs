@@ -35,7 +35,7 @@ int main() {
 
     int s, e;
     map = vector<vector<int>>(n+1);
-    for(int i=0; i<n; i++) {
+    for(int i=0; i<m; i++) {
         cin >> s >> e;
 
         map[s].push_back(e);
