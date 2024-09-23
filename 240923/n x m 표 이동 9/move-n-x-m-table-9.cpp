@@ -28,10 +28,15 @@ int main() {
     }
 
     queue<Node> q;
-    vector<vector<bool>> visited(n, vector<bool>(m, false));
-    if(map[0][0]) q.push(Node{0, 0, true, 1});
-    else q.push(Node{0, 0, false, 1});
-    visited[0][0] = true;
+    vector<vector<vector<bool>>> visited(n, vector<vector<bool>>(m, vector<bool>(2, false)));
+    if(map[0][0]) {
+        q.push(Node{0, 0, true, 1});
+        visited[0][0][1] = true;
+    }
+    else {
+        q.push(Node{0, 0, false, 1});
+        visited[0][0][0] = true;
+    }
 
     int ans = -1;
     while(!q.empty()) {
@@ -42,26 +47,29 @@ int main() {
             ans = now.cnt;
             break;
         }
-
         for(int d=0; d<4; d++) {
             int dirx = now.x + dirs[d][0];
             int diry = now.y + dirs[d][1];
 
-            if(isin(dirx, diry) && !visited[dirx][diry]) {
+            if(isin(dirx, diry)) {
                 if(now.check) {
-                    if(map[dirx][diry] == 0) {
-                        visited[dirx][diry] = true;
+                    if(map[dirx][diry] == 0 && !visited[dirx][diry][1]) {
+                        visited[dirx][diry][1] = true;
                         q.push(Node{dirx, diry, true, now.cnt+1});
                     }
                 }
                 else {
                     if(map[dirx][diry] == 1) {
-                        visited[dirx][diry] = true;
-                        q.push(Node{dirx, diry, true, now.cnt+1});
+                        if(!visited[dirx][diry][1]) {
+                            visited[dirx][diry][1] = true;
+                            q.push(Node{dirx, diry, true, now.cnt+1});
+                        }
                     }
                     else {
-                        visited[dirx][diry] = true;
-                        q.push(Node{dirx, diry, false, now.cnt+1});
+                        if(!visited[dirx][diry][0]) {
+                            visited[dirx][diry][0] = true;
+                            q.push(Node{dirx, diry, false, now.cnt+1});
+                        }
                     }
                 }
             }
