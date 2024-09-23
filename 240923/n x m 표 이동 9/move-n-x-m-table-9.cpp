@@ -28,8 +28,10 @@ int main() {
     }
 
     queue<Node> q;
+    vector<vector<bool>> visited(n, vector<bool>(m, false));
     if(map[0][0]) q.push(Node{0, 0, true, 1});
     else q.push(Node{0, 0, false, 1});
+    visited[0][0] = true;
 
     int ans = -1;
     while(!q.empty()) {
@@ -45,17 +47,22 @@ int main() {
             int dirx = now.x + dirs[d][0];
             int diry = now.y + dirs[d][1];
 
-            if(isin(dirx, diry)) {
+            if(isin(dirx, diry) && !visited[dirx][diry]) {
                 if(now.check) {
                     if(map[dirx][diry] == 0) {
+                        visited[dirx][diry] = true;
                         q.push(Node{dirx, diry, true, now.cnt+1});
                     }
                 }
                 else {
                     if(map[dirx][diry] == 1) {
+                        visited[dirx][diry] = true;
                         q.push(Node{dirx, diry, true, now.cnt+1});
                     }
-                    else q.push(Node{dirx, diry, false, now.cnt+1});
+                    else {
+                        visited[dirx][diry] = true;
+                        q.push(Node{dirx, diry, false, now.cnt+1});
+                    }
                 }
             }
         }
