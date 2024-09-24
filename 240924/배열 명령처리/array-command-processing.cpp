@@ -21,7 +21,7 @@ int main() {
                 break;
             case 2:
                 cin >> x;
-                arrs[i] |= ~(1 << (x - 1));
+                arrs[i] &= ~(1 << (x - 1));
                 break;
             case 3:
                 arrs[i] <<= 1;
