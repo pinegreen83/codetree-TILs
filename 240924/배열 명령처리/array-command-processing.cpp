@@ -9,7 +9,7 @@ int main() {
     int n, m, a, i, x;
     cin >> n >> m;
 
-    vector<vector<int>> arrs(n+1, vector<int>(21, 2));
+    vector<vector<int>> arrs(n+1, vector<int>(21, 0));
     while(m--)
     {
         cin >> a >> i;
@@ -29,7 +29,7 @@ int main() {
                         if(j != 20) {
                             arrs[i][j+1] = 1;
                         }
-                        arrs[i][j] = 2;
+                        arrs[i][j] = 0;
                     }
                 }
                 break;
@@ -39,7 +39,7 @@ int main() {
                         if(j != 1) {
                             arrs[i][j-1] = 1;
                         }
-                        arrs[i][j] = 2;
+                        arrs[i][j] = 0;
                     }
                 }
                 break;
