@@ -9,7 +9,7 @@ int main() {
     int n, m, a, i, x;
     cin >> n >> m;
 
-    vector<vector<int>> arrs(n+1, vector<int>(21, 0));
+    vector<int> arrs(n+1, 0);
     while(m--)
     {
         cin >> a >> i;
@@ -17,42 +17,25 @@ int main() {
         {
             case 1:
                 cin >> x;
-                arrs[i][x] = 1;
+                arrs[i] |= (1 << (x-1));
                 break;
             case 2:
                 cin >> x;
-                arrs[i][x] = 0;
+                arrs[i] |= ~(1 << (x - 1));
                 break;
             case 3:
-                for(int j=1; j<=20; j++) {
-                    if(arrs[i][j] == 1) {
-                        if(j != 20) {
-                            arrs[i][j+1] = 1;
-                        }
-                        arrs[i][j] = 0;
-                    }
-                }
+                arrs[i] <<= 1;
+                arrs[i] &= ((1 << 20) - 1);
                 break;
             case 4:
-                for(int j=1; j<=20; j++) {
-                    if(arrs[i][j] == 1) {
-                        if(j != 1) {
-                            arrs[i][j-1] = 1;
-                        }
-                        arrs[i][j] = 0;
-                    }
-                }
+                arrs[i] >>= 1;
                 break;
         }
     }
 
-    unordered_set<string> uset;
+    unordered_set<int> uset;
     for(int i=1; i<=n; i++) {
-        string temp = "";
-        for(int j=1; j<=20; j++) {
-            temp += (arrs[i][j] + '0');
-        }
-        uset.insert(temp);
+        uset.insert(arrs[i]);
     }
     cout << uset.size();
 
