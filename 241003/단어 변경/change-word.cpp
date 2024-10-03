@@ -12,6 +12,8 @@ int main() {
     cin >> a >> b;
 
     vector<vector<int>> dp(n+1, vector<int>(m+1));
+    for(int i=1; i<=n; i++) dp[i][0] = i;
+    for(int j=1; j<=m; j++) dp[0][j] = j;
 
     for(int i=1; i<=n; i++) {
         for(int j=1; j<=m; j++) {
