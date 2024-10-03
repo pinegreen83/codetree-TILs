@@ -18,7 +18,7 @@ int main() {
     for(int i=1; i<=n; i++) {
         for(int j=1; j<=m; j++) {
             int cost;
-            if(a[i-1] == b[j-1] || (a[i-1] == 'i' && (b[j-1] == 'i' || b[j-1] == 'j' || b[j-1] == 'l')) || (a[i-1] == 'v' && b[j-1] == 'w')) {
+            if(a[i-1] == b[j-1] || (a[i-1] == 'i' && (b[j-1] == 'i' || b[j-1] == 'j' || b[j-1] == 'l')) || (a[i-1] == 'v' && (b[j-1] == 'v' || b[j-1] == 'w'))) {
                 cost = 0;
             }
             else cost = 1;
