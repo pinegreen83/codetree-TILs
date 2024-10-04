@@ -47,12 +47,19 @@ int main() {
 
             if(isin(dirx, diry) && !visited[dirx][diry]) {
                 if(map[dirx][diry] == 2) {
+                    visited[dirx][diry] = true;
                     q.push(Node{dirx, diry, now.move+1, true});
                 }
                 else if(map[dirx][diry] == 1) {
-                    if(now.check) q.push(Node{dirx, diry, now.move+1, now.check});
+                    if(now.check) {
+                        visited[dirx][diry] = true;
+                        q.push(Node{dirx, diry, now.move+1, now.check});
+                    }
                 }
-                else q.push(Node{dirx, diry, now.move+1, now.check});
+                else {
+                    visited[dirx][diry] = true;
+                    q.push(Node{dirx, diry, now.move+1, now.check});
+                }
             }
         }
     }
