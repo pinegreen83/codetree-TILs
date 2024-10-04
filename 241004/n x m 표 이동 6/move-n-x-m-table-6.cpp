@@ -37,8 +37,12 @@ int main() {
         q.pop();
 
         if(now.x == n-1 && now.y == m-1) {
-            end = now.move;
-            break;
+            if(now.move <= t) {
+                cout << now.move;
+            } else {
+                cout << "Fail";
+            }
+            return 0;
         }
 
         for(int d=0; d<4; d++) {
@@ -59,8 +63,7 @@ int main() {
             }
         }
     }
-    if(end != -1) cout << end;
-    else cout << "Fail";
+    cout << "Fail";
 
     return 0;
 }
