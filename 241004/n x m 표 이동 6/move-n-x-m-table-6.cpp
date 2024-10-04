@@ -59,7 +59,7 @@ int main() {
             }
         }
     }
-    if(end <= t) cout << end;
+    if(end != -1) cout << end;
     else cout << "Fail";
 
     return 0;
