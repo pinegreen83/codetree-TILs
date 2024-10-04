@@ -26,18 +26,18 @@ int main() {
         for(int j=0; j<m; j++) cin >> map[i][j];
     }
 
-    vector<vector<bool>> visited(n, vector<bool>(m, false));
+    vector<vector<vector<bool>>> visited(2, vector<vector<bool>>(n, vector<bool>(m, false)));
     queue<Node> q;
     q.push(Node{0, 0, 0, false});
-    visited[0][0] = true;
+    visited[0][0][0] = true;
 
+    int end = -1;
     while(!q.empty()) {
         Node now = q.front();
         q.pop();
 
         if(now.x == n-1 && now.y == m-1) {
-            if(now.move <= t) cout << now.move;
-            else cout << "Fail";
+            end = now.move;
             break;
         }
 
@@ -45,24 +45,22 @@ int main() {
             int dirx = now.x + dirs[d][0];
             int diry = now.y + dirs[d][1];
 
-            if(isin(dirx, diry) && !visited[dirx][diry]) {
-                if(map[dirx][diry] == 2) {
-                    visited[dirx][diry] = true;
-                    q.push(Node{dirx, diry, now.move+1, true});
-                }
-                else if(map[dirx][diry] == 1) {
-                    if(now.check) {
-                        visited[dirx][diry] = true;
-                        q.push(Node{dirx, diry, now.move+1, now.check});
+            if(isin(dirx, diry)) {
+                if(!now.check && !visited[0][dirx][diry]) {
+                    if(map[dirx][diry] == 0 || map[dirx][diry] == 2) {
+                        visited[0][dirx][diry] = true;
+                        q.push(Node{dirx, diry, now.move+1, map[dirx][diry] == 2 ? true : now.check});
                     }
                 }
-                else {
-                    visited[dirx][diry] = true;
-                    q.push(Node{dirx, diry, now.move+1, now.check});
+                if(now.check && !visited[1][dirx][diry]) {
+                    visited[1][dirx][diry] = true;
+                    q.push(Node{dirx, diry, now.move+1, true});
                 }
             }
         }
     }
+    if(end <= t) cout << end;
+    else cout << "Fail";
 
     return 0;
 }
