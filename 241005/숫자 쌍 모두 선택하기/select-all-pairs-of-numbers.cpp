@@ -13,13 +13,13 @@ int main() {
         int a, b;
         cin >> a >> b;
 
-        pq.push({-a, 1});
-        pq.push({-b, -1});
+        pq.push({-a, -1});
+        pq.push({-b, 1});
     }
 
     int ans = 0, check = 0;
     while(!pq.empty()) {
-        if(pq.top().second == 1) {
+        if(-pq.top().second == 1) {
             check++;
             ans = max(ans, check);
         }
