@@ -13,30 +13,14 @@ int main() {
         for(int j=0; j<m; j++) cin >> map[i][j];
     }
 
-    vector<vector<int>> dp1(n, vector<int>(m, 0));
-    vector<vector<int>> dp2(n, vector<int>(m, 0));
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<m; j++) {
-            if(map[i][j] == 1) {
-                int cnt = 1;
-                for(int k=j+1; k<m; k++) {
-                    if(map[i][k] == 1) cnt++;
-                    else break;
-                }
-                dp1[i][j] = cnt;
-            }
-        }
-    }
+    vector<vector<int>> dp(n, vector<int>(m, 0));
+    for(int i=0; i<n; i++) dp[i][0] = map[i][0];
+    for(int j=0; j<m; j++) dp[0][j] = map[0][j];
 
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<m; j++) {
+    for(int i=1; i<n; i++) {
+        for(int j=1; j<m; j++) {
             if(map[i][j] == 1) {
-                int cnt = 1;
-                for(int k=i+1; k<n; k++) {
-                    if(map[k][j] == 1) cnt++;
-                    else break;
-                }
-                dp2[i][j] = cnt;
+                dp[i][j] = min(dp[i-1][j], min(dp[i][j-1], dp[i-1][j-1])) + 1;
             }
         }
     }
@@ -44,15 +28,7 @@ int main() {
     int ans = 0;
     for(int i=0; i<n; i++) {
         for(int j=0; j<m; j++) {
-            if(dp1[i][j] >= dp2[i][j]) {
-                ans = max(ans, dp2[i][j] * dp2[i][j]);
-            }
-            else if(dp1[i][j] == dp2[i][j]) {
-                ans = max(ans, dp1[i][j] * dp2[i][j]);
-            }
-            else if(dp1[i][j] <= dp2[i][j]) {
-                ans = max(ans, dp1[i][j] * dp1[i][j]);
-            }
+            ans = max(ans, dp[i][j] * dp[i][j]);
         }
     }
     cout << ans;
