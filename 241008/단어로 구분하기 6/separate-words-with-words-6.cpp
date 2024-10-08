@@ -7,7 +7,7 @@ int main() {
     int cnt = 0;
     while(cin >> now) {
         cnt++;
-        if(cnt % 3 == 0) cout << now << " ";
+        if(cnt % 3 == 0) cout << now << "\n";
     }
 
     return 0;
