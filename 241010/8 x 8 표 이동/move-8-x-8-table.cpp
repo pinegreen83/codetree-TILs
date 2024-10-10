@@ -18,11 +18,9 @@ int main() {
         for(int j=0; j<8; j++) cin >> map[i][j];
     }
 
-    bool visited[8][8] = {};
     int dirs[8][2] = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
     queue<Move> q;
     q.push(Move{7, 0, 0});
-    visited[7][0] = true;
 
     bool canMove = false;
     while(!q.empty()) {
@@ -35,14 +33,14 @@ int main() {
         }
 
         char temp[8][8];
-        for(int i=7; i>=0; i--) {
-            for(int j=7; j>=0; j--) {
-                temp[i][j] = '.';
-                if(map[i][j] == '#') {
-                    if(i+now.time < 8) {
-                        temp[i+now.time][j] = '#';
-                    }
-                }
+        for(int i=0; i<8; i++) {
+            for(int j=0; j<8; j++) temp[i][j] = '.';
+        }
+
+        for(int i=0; i<8; i++) {
+            for(int j=0; j<8; j++) {
+            if(map[i][j] == '#' && i+now.time < 8) {
+                temp[i+now.time][j] = '#';
             }
         }
 
@@ -51,9 +49,8 @@ int main() {
                 int dirx = now.x + dirs[d][0];
                 int diry = now.y + dirs[d][1];
 
-                if(isin(dirx, diry) && !visited[dirx][diry]) {
+                if(isin(dirx, diry)) {
                     if(temp[dirx][diry] == '.') {
-                        visited[dirx][diry] = true;
                         q.push(Move{dirx, diry, now.time+1});
                     }
                 }
