@@ -5,8 +5,8 @@ using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    char now;    
-    map<char, int> m;
+    string now;    
+    map<string, int> m;
 
     while(cin >> now) {
         m[now]++;
