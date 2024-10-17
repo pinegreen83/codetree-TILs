@@ -26,6 +26,10 @@ int main() {
             else isReverse = true;
         }
         else {
+            if(deq.empty()) {
+                cout << "error";
+                return 0;
+            }
             if(isReverse) {
                 deq.pop_back();
             }
