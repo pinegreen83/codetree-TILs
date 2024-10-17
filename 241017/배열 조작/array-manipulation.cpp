@@ -33,11 +33,14 @@ int main() {
         }
     }
 
-    if(isReverse) {
-        for(auto i=deq.rbegin(); i!=deq.rend(); i++) cout << *i << ' ';
-    }
+    if(deq.empty()) cout << "error";
     else {
-        for(auto i=deq.begin(); i!=deq.end(); i++) cout << *i << ' ';
+        if(isReverse) {
+            for(auto i=deq.rbegin(); i!=deq.rend(); i++) cout << *i << ' ';
+        }
+        else {
+            for(auto i=deq.begin(); i!=deq.end(); i++) cout << *i << ' ';
+        }
     }
 
     return 0;
