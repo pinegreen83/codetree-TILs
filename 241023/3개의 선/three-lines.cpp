@@ -44,8 +44,8 @@ int main() {
     unordered_map<int, int> umap_x2;
     unordered_map<int, int> umap_y2;
 
-    unordered_map<int, int> arrx[n];
-    unordered_map<int, int> arry[n];
+    unordered_map<int, int> arrx[x_num];
+    unordered_map<int, int> arry[y_num];
 
     for(int i=0; i<n; i++) {
         int x, y;
@@ -67,7 +67,8 @@ int main() {
         for(auto y : m) {
             int val = y.first;
             int freq = y.second;
-            if(umap_x2[val] == freq) {
+
+            if(umap_y2[val] == freq) {
                 cnt--;
             }
         }
