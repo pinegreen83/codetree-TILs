@@ -35,24 +35,10 @@ int main() {
     vector<vector<vector<int>>> visited(n, vector<vector<int>>(m, vector<int>(2, INF)));
     priority_queue<Next> q;
 
-    bool isup = false;
-    bool isdown = false;
-    if(0 <= sx + dirs[0] && map[sx+dirs[0]][sy] == '#') {
-        isup = true;
-        q.push(Next{sx, sy, 0, 0});
-        visited[sx][sy][0] = 0;
-    }
-
-    if(sx + dirs[1] < n && map[sx+dirs[1]][sy] == '#') {
-        isdown = true;
-        q.push(Next{sx, sy, 0, 1});
-        visited[sx][sy][1] = 0;
-    }
-
-    if(!isup && !isdown) {
-        cout << -1;
-        return 0;
-    }
+    q.push(Next{sx, sy, 0, 1});
+    visited[sx][sy][1] = 0;
+    q.push(Next{sx, sy, 1, 0});
+    visited[sx][sy][0] = 1;
 
     while(!q.empty()) {
         Next now = q.top();
@@ -82,6 +68,11 @@ int main() {
         if(map[nextX][y] == 'D') {
             cout << chan;
             return 0;
+        }
+
+        if (visited[nextX][y][grav] > chan) {
+            visited[nextX][y][grav] = chan;
+            q.push(Next{nextX, y, chan, grav});
         }
 
         for(int i=-1; i<=1; i+=2) {
