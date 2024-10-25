@@ -66,6 +66,10 @@ int main() {
                 break;
             }
             if(map[newX][y] == '#') break;
+            if(map[newX][y] == 'D') {
+                cout << chan;
+                return 0;
+            }
 
             nextX = newX;
         }
