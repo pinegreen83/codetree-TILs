@@ -45,7 +45,7 @@ int main() {
 
     if(sx + dirs[1] < n && map[sx+dirs[1]][sy] == '#') {
         isdown = true;
-        q.push(Next{sx, sy, 1, 0});
+        q.push(Next{sx, sy, 0, 1});
         visited[sx][sy][1] = 0;
     }
 
