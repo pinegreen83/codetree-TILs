@@ -10,7 +10,7 @@ struct Next {
     int x, y, ch, dir;
 
     bool operator<(const Next& ne) const {
-        return this->ch < ne.dir;
+        return this->ch > ne.dir;
     }
 };
 
