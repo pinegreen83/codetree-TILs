@@ -34,10 +34,8 @@ int main() {
     int dirs[2] = {-1, 1};
     vector<vector<vector<int>>> visited(n, vector<vector<int>>(m, vector<int>(2, INF)));
     priority_queue<Next> q;
-    q.push(Next{sx, sy, 0, 1});
     q.push(Next{sx, sy, 1, 0});
 
-    visited[sx][sy][0] = 1;
     visited[sx][sy][1] = 0;
 
     while(!q.empty()) {
