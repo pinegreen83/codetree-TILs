@@ -19,7 +19,7 @@ int n, m, dirs[2] = {-1, 1};
 int applyGravity(int x, int y, int d, vector<vector<char>>& map) {
     while(true) {
         int newX = x + dirs[d];
-        if(newX < 0 || newX >= n) break;
+        if(newX < 0 || newX >= n) return -1;
         if(map[newX][y] == '#') {
             return x;
         }
@@ -28,7 +28,6 @@ int applyGravity(int x, int y, int d, vector<vector<char>>& map) {
         }
         x = newX;
     }
-    return -1;
 }
 
 int main() {
@@ -51,10 +50,10 @@ int main() {
     priority_queue<Next> q;
 
     for(int i=0; i<=1; i++) {
+        int change = (i == 1 ? 0 : 1);
         int newX = applyGravity(sx, sy, i, map);
         
         if(newX != -1) {
-            int change = (newX == sx ? 0 : 1);
             if(visited[newX][sy][i] > change) {
                 q.push(Next{newX, sy, change, i});
                 visited[newX][sy][i] = change;
