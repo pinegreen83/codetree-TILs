@@ -65,6 +65,8 @@ int main() {
             nextX = newX;
         }
 
+        if(newX < 0 || newX >= n) continue;
+
         if(map[nextX][y] == 'D') {
             cout << chan;
             return 0;
