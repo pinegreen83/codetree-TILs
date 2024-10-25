@@ -97,6 +97,14 @@ int main() {
                 q.push(Next{nextX, ny, chan+1, nextDir});
             }
         }
+        
+        int nextDir = 1 - grav;
+        int nextX = applyGravity(x, y, nextDir, map);
+
+        if (nextX != -1 && visited[nextX][y][nextDir] > chan + 1) {
+            visited[nextX][y][nextDir] = chan + 1;
+            q.push(Next{nextX, y, chan + 1, nextDir});
+        }
     }
     cout << -1;
 
