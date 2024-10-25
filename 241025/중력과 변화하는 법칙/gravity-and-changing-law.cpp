@@ -65,6 +65,11 @@ int main() {
 
         if(visited[x][y][grav] < chan) continue;
 
+        if(map[x][y] == 'D') {
+            cout << chan;
+            return 0;
+        }
+
         int nextX = x;
         while(true) {
             int newX = nextX + dirs[grav];
