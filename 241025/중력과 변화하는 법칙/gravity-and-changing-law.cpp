@@ -10,7 +10,7 @@ struct Next {
     int x, y, ch, dir;
 
     bool operator<(const Next& ne) const {
-        return this->ch > ne.dir;
+        return this->ch > ne.ch;
     }
 };
 
@@ -34,47 +34,50 @@ int main() {
     int dirs[2] = {-1, 1};
     vector<vector<vector<int>>> visited(n, vector<vector<int>>(m, vector<int>(2, INF)));
     priority_queue<Next> q;
-    q.push(Next{sx, sy, 0, 0});
     q.push(Next{sx, sy, 0, 1});
+    q.push(Next{sx, sy, 1, 0});
 
-    visited[sx][sy][0] = 0;
+    visited[sx][sy][0] = 1;
     visited[sx][sy][1] = 0;
 
     while(!q.empty()) {
         Next now = q.top();
         q.pop();
 
-        bool check = false;
-        int nextX = now.x + dirs[now.dir];
-        while(0 <= nextX && nextX < n) {
-            if(map[nextX][now.y] == '#') {
-                nextX -= dirs[now.dir];
-                check = true;
+        int x = now.x;
+        int y = now.y;
+        int grav = now.dir;
+        int chan = now.ch;
+
+        if(visited[x][y][grav] < chan) continue;
+
+        int nextX = x;
+        while(true) {
+            int newX = nextX + dirs[grav];
+            if(newX < 0 || newX >= n || map[newX][y] == '#') {
                 break;
             }
-            nextX += dirs[now.dir];
+            nextX = newX;
         }
 
-        if(!check) continue;
-
-        if(map[nextX][now.y] == 'D') {
-            cout << now.ch;
+        if(map[nextX][y] == 'D') {
+            cout << chan;
             return 0;
         }
 
         for(int i=-1; i<=1; i+=2) {
-            int ny = now.y + i;
-            if(0 > ny || ny >= m) continue; 
+            int ny = y + i;
+            if(ny < 0 || ny >= m || map[nextX][ny] == '#') continue;
 
-            if(visited[nextX][ny][now.dir] > now.ch) {
-                visited[nextX][ny][now.dir] = now.ch;
-                q.push(Next{nextX, ny, now.ch, now.dir});
+            if(visited[nextX][ny][grav] > chan) {
+                visited[nextX][ny][grav] = chan;
+                q.push(Next{nextX, ny, chan, grav});
             }
 
-            int nextDir = 1 - now.dir;
-            if(visited[nextX][ny][nextDir] > now.ch+1) {
-                visited[nextX][ny][nextDir] = now.ch+1;
-                q.push(Next{nextX, ny, now.ch+1, nextDir});
+            int nextDir = 1 - grav;
+            if(visited[nextX][ny][nextDir] > chan + 1) {
+                visited[nextX][ny][nextDir] = chan + 1;
+                q.push(Next{nextX, ny, chan+1, nextDir});
             }
         }
     }
