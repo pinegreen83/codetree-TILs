@@ -56,16 +56,21 @@ int main() {
             return 0;
         }
 
+        bool check = false;
         int nextX = x;
         while(true) {
             int newX = nextX + dirs[grav];
-            if(newX < 0 || newX >= n || map[newX][y] == '#') {
+
+            if(newX < 0 || newX >= n) {
+                check = true;
                 break;
             }
+            if(map[newX][y] == '#') break;
+
             nextX = newX;
         }
 
-        if(newX < 0 || newX >= n) continue;
+        if(check) continue;
 
         if(map[nextX][y] == 'D') {
             cout << chan;
