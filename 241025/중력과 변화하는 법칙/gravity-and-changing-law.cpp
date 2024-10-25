@@ -14,9 +14,25 @@ struct Next {
     }
 };
 
+int n, m, dirs[2] = {-1, 1};
+
+int applyGravity(int x, int y, int d, vector<vector<char>>& map) {
+    while(true) {
+        int newX = x + dirs[d];
+        if(newX < 0 || newX >= n) break;
+        if(map[newX][y] == '#') {
+            return x;
+        }
+        if(map[newX][y] == 'D') {
+            return newX;
+        }
+        x = newX;
+    }
+    return -1;
+}
+
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, m;
     cin >> n >> m;
 
     int sx, sy;
@@ -31,14 +47,20 @@ int main() {
         }
     }
 
-    int dirs[2] = {-1, 1};
     vector<vector<vector<int>>> visited(n, vector<vector<int>>(m, vector<int>(2, INF)));
     priority_queue<Next> q;
 
-    q.push(Next{sx, sy, 0, 1});
-    visited[sx][sy][1] = 0;
-    q.push(Next{sx, sy, 1, 0});
-    visited[sx][sy][0] = 1;
+    for(int i=0; i<=1; i++) {
+        int newX = applyGravity(sx, sy, i, map);
+        
+        if(newX != -1) {
+            int change = (newX == sx ? 0 : 1);
+            if(visited[newX][sy][i] > change) {
+                q.push(Next{newX, sy, change, i});
+                visited[newX][sy][i] = change;
+            }
+        }
+    }
 
     while(!q.empty()) {
         Next now = q.top();
@@ -55,48 +77,23 @@ int main() {
             cout << chan;
             return 0;
         }
-
-        bool check = false;
-        int nextX = x;
-        while(true) {
-            int newX = nextX + dirs[grav];
-
-            if(newX < 0 || newX >= n) {
-                check = true;
-                break;
-            }
-            if(map[newX][y] == '#') break;
-            if(map[newX][y] == 'D') {
-                cout << chan;
-                return 0;
-            }
-
-            nextX = newX;
-        }
-
-        if(check) continue;
-
-        if(map[nextX][y] == 'D') {
-            cout << chan;
-            return 0;
-        }
-
-        if (visited[nextX][y][grav] > chan) {
-            visited[nextX][y][grav] = chan;
-            q.push(Next{nextX, y, chan, grav});
-        }
-
+    
         for(int i=-1; i<=1; i+=2) {
             int ny = y + i;
-            if(ny < 0 || ny >= m || map[nextX][ny] == '#') continue;
 
-            if(visited[nextX][ny][grav] > chan) {
+            if(ny < 0 || ny >= m || map[x][ny] == '#') continue;
+
+            int nextX = applyGravity(x, ny, grav, map);
+
+            if(nextX != -1 && visited[nextX][ny][grav] > chan) {
                 visited[nextX][ny][grav] = chan;
                 q.push(Next{nextX, ny, chan, grav});
             }
 
             int nextDir = 1 - grav;
-            if(visited[nextX][ny][nextDir] > chan + 1) {
+            nextX = applyGravity(x, ny, nextDir, map);
+
+            if(nextX != -1 && visited[nextX][ny][nextDir] > chan + 1) {
                 visited[nextX][ny][nextDir] = chan + 1;
                 q.push(Next{nextX, ny, chan+1, nextDir});
             }
