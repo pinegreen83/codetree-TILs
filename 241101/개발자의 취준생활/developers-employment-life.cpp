@@ -19,6 +19,8 @@ void Backtrack(const vector<int>& want, const vector<int>& maxBill, vector<bool>
             visited[i] = true;
             Backtrack(want, maxBill, visited, idx+1);
             visited[i] = false;
+
+            break;
         }
     }
 }
