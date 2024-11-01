@@ -4,41 +4,30 @@
 
 using namespace std;
 
-int n, cnt = 0;
-
-void Backtrack(const vector<int>& want, const vector<int>& maxBill, vector<bool>& visited, int idx) {
-    if(idx == n) {
-        cnt++;
-        return;
-    }
-
-    for(int i=0; i<n; i++) {
-        if(visited[i]) continue;
-
-        if(want[idx] <= maxBill[i]) {
-            visited[i] = true;
-            Backtrack(want, maxBill, visited, idx+1);
-            visited[i] = false;
-        }
-    }
-}
-
 int main() {
     // 여기에 코드를 작성해주세요.
+    int n;
     cin >> n;
 
-    vector<int> want(n);
-    vector<int> maxBill(n);
-
+    vector<int> want(n), maxBill(n);
     for(int i=0; i<n; i++) cin >> want[i];
     for(int i=0; i<n; i++) cin >> maxBill[i];
 
-    sort(want.begin(), want.end());
-    sort(maxBill.begin(), maxBill.end());
+    vector<vector<int>> dp(n+1, vector<int>(1 << n, 0));
+    dp[0][0] = 1;
+    
+    for(int i=0; i<n; i++) {
+        for(int j=0; j<(1<<n); j++) {
+            if(dp[i][j] == 0) continue;
 
-    vector<bool> visited(n, false);
-    Backtrack(want, maxBill, visited, 0);
-    cout << cnt;
+            for(int k=0; k<n; k++) {
+                if(!(j & (1 << k)) && want[i] <= maxBill[k]) {
+                    dp[i+1][j | (1 << k)] += dp[i][j];
+                }
+            }
+        }
+    }
+    cout << dp[n][(1 << n) - 1];
 
     return 0;
 }
