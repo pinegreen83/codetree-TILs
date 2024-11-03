@@ -16,8 +16,9 @@ int main() {
 
     int start2 = count(b, a) + 1;
 
-    if(start1 == 1e9 && start2 == 1e9+1) cout << -1;
-    cout << (start1 < start2 ? start1 : start2);
+    int ans = min(start1, start2);
+    if(ans > n) cout << -1;
+    else cout << ans;
 
     return 0;
 }
