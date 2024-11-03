@@ -16,7 +16,7 @@ int main() {
 
     int start2 = count(b, a) + 1;
 
-    if(start1 == 1e9 && start2 == 1e9) cout << -1;
+    if(start1 == 1e9 && start2 == 1e9+1) cout << -1;
     cout << (start1 < start2 ? start1 : start2);
 
     return 0;
