@@ -18,13 +18,11 @@ int main() {
         if(nums[i] >= nums[i-1]) {
             up++;
         }
-        else {
-            up = 1;
-        }
+        else up = 1;
         if(nums[i] <= nums[i-1]) {
             down++;
         }
-        else down--;
+        else down = 1;
 
         maxLen = max(maxLen, max(up, down));
     }
