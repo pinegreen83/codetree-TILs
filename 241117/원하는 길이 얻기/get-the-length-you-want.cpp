@@ -12,7 +12,7 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    vector<pair<int, int>> pieces;
+    vector<pair<int, int>> cuts;
     int ans = 0;
 
     for(auto num : nums) {
@@ -20,24 +20,33 @@ int main() {
             ans++;
         }
         else if(num > 10) {
-            int piece = num / 10;
-            int cuts = piece - 1;
-            if(num % 10 != 0) cuts++;
-            pieces.push_back({cuts, piece});
+            int tens = num / 10;
+            int cut = tens;
+            int last = num - (10 * tens);
+            if(last == 0) {
+                cut--;
+            }
+
+            if(cut > 0) {
+                cuts.push_back({cut, tens});
+            }
         }
     }
 
-    sort(pieces.begin(), pieces.end());
-    for(auto piece : pieces) {
-        if(m >= piece.first) {
-            ans += piece.second;
-            m -= piece.first;
+    sort(cuts.begin(), cuts.end());
+
+    for(const auto& cut : cuts) {
+        if(m >= cut.first) {
+            ans += cut.second;
+            m -= cut.first;
         }
-        else {
+        else if(m > 0) {
             ans += m;
-            break;
+            m = 0;
         }
+        if(m == 0) break;
     }
+
     cout << ans;
 
     return 0;
