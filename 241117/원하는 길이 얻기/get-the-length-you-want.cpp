@@ -12,7 +12,7 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    vector<pair<int, int>> cuts;
+    vector<pair<double, pair<int, int>>> cuts;
     int ans = 0;
 
     for(auto num : nums) {
@@ -28,17 +28,18 @@ int main() {
             }
 
             if(cut > 0) {
-                cuts.push_back({cut, tens});
+                double eff = (double) tens/ cut;
+                cuts.push_back({eff, {cut, tens}});
             }
         }
     }
 
-    sort(cuts.begin(), cuts.end());
+    sort(cuts.begin(), cuts.end(), greater<pair<double, pair<int, int>>>());
 
     for(const auto& cut : cuts) {
-        if(m >= cut.first) {
-            ans += cut.second;
-            m -= cut.first;
+        if(m >= cut.second.first) {
+            ans += cut.second.second;
+            m -= cut.second.first;
         }
         else if(m > 0) {
             ans += m;
