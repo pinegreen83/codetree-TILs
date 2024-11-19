@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <climits>
 
 using namespace std;
 
@@ -13,28 +14,21 @@ int main() {
         cin >> abcs[i][0] >> abcs[i][1] >> abcs[i][2];
     }
 
-    long long ans = 1e10;
-    vector<vector<int>> dp;
-    for(int t=0; t<3; t++) {
-        dp = vector<vector<int>>(n+1, vector<int>(3, 0));
+    int ans = INT_MAX;
+    for(int s=0; s<3; s++) {
+        vector<vector<int>> dp(n, vector<int>(3, INT_MAX));
+        dp[0][s] = abcs[0][s];
 
         for(int i=1; i<n; i++) {
-            dp[i][0] = min(dp[i-1][1], dp[i-1][2]) + abcs[i-1][0];
-            dp[i][1] = min(dp[i-1][0], dp[i-1][2]) + abcs[i-1][1];
-            dp[i][2] = min(dp[i-1][0], dp[i-1][1]) + abcs[i-1][2];
+            dp[i][0] = (dp[i-1][1] != INT_MAX || dp[i-1][2] != INT_MAX) ? min(dp[i-1][1], dp[i-1][2]) + abcs[i][0] : INT_MAX;
+            dp[i][1] = (dp[i-1][0] != INT_MAX || dp[i-1][2] != INT_MAX) ? min(dp[i-1][0], dp[i-1][2]) + abcs[i][1] : INT_MAX;
+            dp[i][2] = (dp[i-1][0] != INT_MAX || dp[i-1][1] != INT_MAX) ? min(dp[i-1][0], dp[i-1][1]) + abcs[i][2] : INT_MAX;
         }
 
-        for(int i=0; i<3; i++) {
-            if(i == t) continue;
-            int temp = 1e9;
-            for(int j=0; j<3; j++) {
-                if(i == j) continue;
-                temp = min(temp, dp[n-1][j]);
-            }
-            dp[n][i] = temp + abcs[n-1][i];
+        for(int e=0; e<3; e++) {
+            if(s == e) continue;
+            ans = min(ans, dp[n-1][e]);
         }
-
-        for(int i=0; i<3; i++) ans = min(ans, dp[n][i]);
     }
     cout << ans;
 
