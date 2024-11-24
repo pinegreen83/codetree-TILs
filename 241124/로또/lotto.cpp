@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -27,6 +28,7 @@ int main() {
     nums = vector<int>(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
+    sort(nums.begin(), nums.end());
     Backtrack(0, 0);
 
     return 0;
