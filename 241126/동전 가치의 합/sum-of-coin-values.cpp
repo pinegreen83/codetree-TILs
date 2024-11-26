@@ -16,7 +16,7 @@ int main() {
 
     costs[0] = 1;
     for(int j=0; j<n; j++) {
-        for(int i=1; i<=m; i++) {
+        for(int i=coins[j]; i<=m; i++) {
             costs[i] = (costs[i] + costs[i-coins[j]]) % 1000000007;
         }
     }
