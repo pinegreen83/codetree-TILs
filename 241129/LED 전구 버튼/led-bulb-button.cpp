@@ -6,34 +6,36 @@ using namespace std;
 
 int main() {
     // 여기에 코드를 작성해주세요.
-    int n, B;
+    int n;
+    long long B;
     cin >> n >> B;
 
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
     int cycleStart = -1;
-    map<vector<int>, int> numSet;
+    map<vector<int>, long long> numMap;
     vector<vector<int>> states;
-    for(int b=0; b<B; b++) {
-        if(numSet.find(nums) != numSet.end()) {
-            cycleStart = numSet[nums];
+
+    for(long long b=0; b<B; b++) {
+        if(numMap.find(nums) != numMap.end()) {
+            cycleStart = numMap[nums];
             break;
         }
 
-        numSet[nums] = b;
+        numMap[nums] = b;
         states.push_back(nums);
 
         vector<int> temp(n, 0);
         for(int i=0; i<n; i++) {
-            int now = i - 1;
-            if(i == 0) now = n-1;
+            int now = (i == 0) ? n - 1 : i - 1;
 
             if(nums[now] == 1) {
-                temp[i] = (nums[i] == 1 ? 0 : 1);
+                temp[i] = 1 - nums[i];
             }
             else temp[i] = nums[i];
         }
+
         nums = temp;
     }
 
