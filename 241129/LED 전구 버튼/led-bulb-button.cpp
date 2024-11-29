@@ -13,7 +13,7 @@ int main() {
     vector<int> nums(n);
     for(int i=0; i<n; i++) cin >> nums[i];
 
-    int cycleStart = -1;
+    long long cycleStart = -1;
     map<vector<int>, long long> numMap;
     vector<vector<int>> states;
 
@@ -40,8 +40,8 @@ int main() {
     }
 
     if(cycleStart != -1) {
-        int cycleLen = states.size() - cycleStart;
-        int lasts = (B - cycleStart) % cycleLen;
+        long long cycleLen = states.size() - cycleStart;
+        long long lasts = (B - cycleStart) % cycleLen;
         nums = states[cycleStart + lasts];
     }
 
