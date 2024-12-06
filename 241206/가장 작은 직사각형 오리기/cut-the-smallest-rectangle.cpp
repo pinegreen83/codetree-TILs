@@ -33,6 +33,7 @@ int main() {
             maxH = 0;
         }
     }
+    ans += cnt * maxH;
     cout << ans;
 
     return 0;
