@@ -1,40 +1,44 @@
 #include <iostream>
-#include <queue>
 
 using namespace std;
 
-int main() {
-    // 여기에 코드를 작성해주세요.
-    int n;
-    cin >> n;
+int n;
+string seats;
 
-    string seats;
-    cin >> seats;
-
-    priority_queue<int> pq;
-    
+bool check(int mid) {
     int cnt = 0;
+    int last = -1e9;
+
     for(int i=0; i<n; i++) {
-        if(seats[i] == '0') {
-            cnt++;
+        if(seats[i] == '1') {
+            last = i;
         }
         else {
-            pq.push(cnt);
-            cnt = 0;
+            if(i - last >= mid) {
+                cnt++;
+                last = i;
+                if(cnt == 2) return true;
+            }
         }
     }
+    return false;
+}
 
-    int now = pq.top();
-    pq.pop();
-    pq.push(now - 2);
-    pq.push(1);
+int main() {
+    // 여기에 코드를 작성해주세요.
+    cin >> n >> seats;
 
-    now = pq.top();
-    pq.pop();
-    pq.push(now - 2);
-    pq.push(1);
-
-    cout << pq.top();
+    int left = 1, right = n;
+    int ans = 1;
+    while(left <= right) {
+        int mid = (left + right) / 2;
+        if(check(mid)) {
+            ans = mid;
+            left = mid + 1;
+        }
+        else right = mid - 1;
+    }
+    cout << ans;
 
     return 0;
 }
