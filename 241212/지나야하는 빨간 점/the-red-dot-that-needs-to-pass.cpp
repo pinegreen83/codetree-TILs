@@ -5,20 +5,22 @@
 using namespace std;
 
 bool isin(int x, int y) {
-    return 0 <= x && x <= 1000 && 0 <= y && y <= 1000;
+    return 0 <= x && x <= 1002 && 0 <= y && y <= 1002;
 }
 
 int main() {
     // 여기에 코드를 작성해주세요.
     int n, x, y;
     cin >> n >> x >> y;
+    x++;
+    y++;
 
-    bool map[1001][1001] = {false};
-    bool visited[1001][1001] = {false};
+    bool map[1003][1003] = {false};
+    bool visited[1003][1003] = {false};
     while(n--) {
         int a, b;
         cin >> a >> b;
-        map[a][b] = true;
+        map[a+1][b+1] = true;
     }
 
     int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
