@@ -24,6 +24,7 @@ int main() {
     int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
     priority_queue<tuple<int, int, int>, vector<tuple<int, int, int>>, greater<>> pq;
     pq.push({0, x, y});
+    visited[x][y] = true;
 
     while(!pq.empty()) {
         int cnt, nowx, nowy;
