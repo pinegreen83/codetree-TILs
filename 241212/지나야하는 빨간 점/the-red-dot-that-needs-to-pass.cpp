@@ -36,14 +36,12 @@ int main() {
             break;
         }
 
-        if(visited[nowx][nowy]) continue;
-        visited[nowx][nowy] = true;
-
         for(int d=0; d<4; d++) {
             int nextx = nowx + dirs[d][0];
             int nexty = nowy + dirs[d][1];
 
             if(isin(nextx, nexty) && !visited[nextx][nexty]) {
+                visited[nextx][nexty] = true;
                 if(map[nextx][nexty]) {
                     pq.push({cnt+1, nextx, nexty});
                 }
