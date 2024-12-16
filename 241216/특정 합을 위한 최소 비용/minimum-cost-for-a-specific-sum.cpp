@@ -32,7 +32,7 @@ int main() {
             }
         }
     }
-    cout << dp[n][m];
+    cout << (dp[n][m] == INT_MAX ? -1 : dp[n][m]);
 
     return 0;
 }
