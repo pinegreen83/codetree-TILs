@@ -1,6 +1,6 @@
 #include <iostream>
-#include <map>
 #include <vector>
+#include <string>
 #include <algorithm>
 
 using namespace std;
@@ -10,31 +10,33 @@ int main() {
     int n, t;
     cin >> n >> t;
     
-    vector<string> words(n);
-    map<string, vector<pair<string, int>>> mm;
+    vector<pair<string, int>> words(n);
     for(int i=0; i<n; i++) {
-        cin >> words[i];
-
-        string word = "";
-        for(char c : words[i]) {
-            word += c;
-            mm[word].emplace_back(words[i], i);
-        }
+        cin >> words[i].first;
+        words[i].second = i+1;
     }
 
-    for(auto& m : mm) {
-        sort(m.second.begin(), m.second.end());
-    }
+    sort(words.begin(), words.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
+        return a.first < b.first;
+    });
 
     while(t--) {
         int k;
         string str;
         cin >> k >> str;
 
-        if(mm.find(str) == mm.end() || mm[str].size() < k) {
-            cout << "-1\n";
+        auto iter = lower_bound(words.begin(), words.end(), make_pair(str, 0), [](const pair<string, int>& a, const pair<string, int>& b) {
+            return a.first < b.first;
+        });
+        vector<int> temp;
+
+        while(iter != words.end() && iter->first.substr(0, str.size()) == str) {
+            temp.push_back(iter->second);
+            ++iter;
         }
-        else cout << mm[str][k-1].second + 1 << "\n";
+
+        if(temp.size() < k) cout << "-1\n";
+        else cout << temp[k-1] << "\n";
     }
 
     return 0;
