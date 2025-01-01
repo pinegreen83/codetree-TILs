@@ -19,11 +19,11 @@ int main() {
     }
 
     int sum = 0;
-    int cnt = 0;
+    int minP = b;
     for(int i=a; i<=b; i++) {
         if(!isPrime[i]) {
             sum += i;
-            cnt++;
+            minP = min(i, minP);
         }
     }
     cout << sum << " " << cnt;
