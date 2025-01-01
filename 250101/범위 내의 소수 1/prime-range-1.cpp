@@ -18,7 +18,7 @@ int main() {
         }
     }
 
-    int sum = 0;
+    long long sum = 0;
     int minP = 1e9;
     for(int i=a; i<=b; i++) {
         if(!isPrime[i]) {
