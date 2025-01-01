@@ -19,14 +19,14 @@ int main() {
     }
 
     int sum = 0;
-    int minP = b;
+    int minP = 1e9;
     for(int i=a; i<=b; i++) {
         if(!isPrime[i]) {
             sum += i;
             minP = min(i, minP);
         }
     }
-    cout << sum << " " << cnt;
+    cout << sum << " " << (minP == 1e9 ? 0 : minP);
 
     return 0;
 }
