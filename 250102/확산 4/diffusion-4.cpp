@@ -34,8 +34,8 @@ int main() {
                 for(int j=0; j<m; j++) {
                     if(map[i][j] == 'O') {
                         for(int d=0; d<4; d++) {
-                            int dirx = dirs[d][0];
-                            int diry = dirs[d][1];
+                            int dirx = i + dirs[d][0];
+                            int diry = j + dirs[d][1];
 
                             if(0 <= dirx && dirx < n && 0 <= diry && diry < m) {
                                 temp[dirx][diry] = '.';
