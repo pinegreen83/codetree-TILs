@@ -12,11 +12,13 @@ int main() {
     }
 
     // Write your code here!
-    int ans[n+1] = {0};
+    int ans = -1e9;
+    int dp[n+1] = {0};
     for(int i=0; i<n; i++) {
-        ans[i+1] = max(ans[i]+arr[i], arr[i]);
+        dp[i+1] = max(dp[i]+arr[i], arr[i]);
+        ans = max(ans, dp[i+1]);
     }
-    cout << ans[n];
+    cout << ans;
 
     return 0;
 }
