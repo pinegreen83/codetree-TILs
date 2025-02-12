@@ -15,9 +15,6 @@ int main() {
 
     // Write your code here!
     vector<vector<int>> dp(n+1, vector<int>(3, 0));
-    dp[1][0] = l[0];
-    dp[1][1] = m[0];
-    dp[1][2] = r[0];
 
     for(int i=2; i<=n; i++) {
         dp[i][0] = max(dp[i-1][1], dp[i-1][2]) + l[i-1];
@@ -26,9 +23,9 @@ int main() {
     }
 
     int ans = 0;
-    for(int i=0; i<3; i++) {
-        ans = max(ans, dp[n][i]);
-    }
+    ans = max(ans, (max(dp[n][1], dp[n][2]) + l[0]));
+    ans = max(ans, (max(dp[n][0], dp[n][2]) + m[0]));
+    ans = max(ans, (max(dp[n][0], dp[n][1]) + r[0]));
     cout << ans;
 
     return 0;
